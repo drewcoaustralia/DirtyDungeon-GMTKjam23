@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: shatterInteriorS10
+    second: {fileID: 2100000, guid: 8a4c3bec8374f86419907d6634101bc2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: texture1
     second: {fileID: 2100000, guid: 8a4c3bec8374f86419907d6634101bc2, type: 2}
   materials:

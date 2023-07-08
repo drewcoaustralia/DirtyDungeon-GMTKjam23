@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 40e07573548018f458d8c4ef2667163b
+guid: d442353f2fd73c743ad22c31c6f11e69
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
   externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shatterInteriorS10
+    second: {fileID: 2100000, guid: 8a4c3bec8374f86419907d6634101bc2, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
