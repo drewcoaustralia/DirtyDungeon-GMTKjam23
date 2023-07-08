@@ -24,7 +24,7 @@ public class Pickuppable : MonoBehaviour, IInteractable
     void Pickup()
     {
         pickedUp = true;
-        _col.isTrigger = true; // change physics layer instead
+        gameObject.layer = LayerMask.NameToLayer("HeldObject");
         src.GetComponent<InteractionController>().Hold(this);
         transform.SetParent(src.transform, false);
         transform.localPosition = Vector3.forward * holdDist;
@@ -40,6 +40,9 @@ public class Pickuppable : MonoBehaviour, IInteractable
     void PutDown()
     {
         Debug.Log("Putting down!");
-        // do stuff
+        pickedUp = false;
+        gameObject.layer = LayerMask.NameToLayer("Environment");
+        src.GetComponent<InteractionController>().Hold(null);
+        transform.SetParent(null, true);
     }
 }
