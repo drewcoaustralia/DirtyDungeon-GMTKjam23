@@ -7,14 +7,16 @@ public class Chest : MonoBehaviour, IInteractable
     public bool isOpen = false;
     private bool isMoving = false;
     public float openSpeed = 0.5f;
+    public float openAngle = -47.555f;
     [SerializeField] private GameObject top;
-    private Quaternion targetRotation = Quaternion.Euler(0, 0, 0);
+    private Quaternion targetRotation;
     private float startTime = 0f;
     private Collider col;
 
     void Awake()
     {
         col = GetComponent<Collider>();
+        targetRotation = Quaternion.Euler(0, transform.localEulerAngles.y, transform.localEulerAngles.z);
     }
 
     public void Interact(GameObject source)
@@ -40,13 +42,13 @@ public class Chest : MonoBehaviour, IInteractable
 
     void Open()
     {
-        targetRotation = Quaternion.Euler(-30, 0, 0);
+        targetRotation = Quaternion.Euler(openAngle, transform.localEulerAngles.y, transform.localEulerAngles.z);
         gameObject.layer = LayerMask.NameToLayer("OpenChest");
     }
 
     void Close()
     {
-        targetRotation = Quaternion.Euler(0, 0, 0);
+        targetRotation = Quaternion.Euler(0, transform.localEulerAngles.y, transform.localEulerAngles.z);
         gameObject.layer = LayerMask.NameToLayer("Environment");
         //TODO ADD LOGIC TO EAT OR PUSH AWAY COLLIDING OBJECTS FIRST
     }

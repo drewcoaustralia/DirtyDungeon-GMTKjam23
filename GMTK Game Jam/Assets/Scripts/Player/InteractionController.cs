@@ -17,7 +17,7 @@ public class InteractionController : MonoBehaviour
         if (raycastSource == null) raycastSource = transform;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         RaycastHit hit;
         float rayDistActual = rayDist;
