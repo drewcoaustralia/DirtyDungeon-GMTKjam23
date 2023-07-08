@@ -8,7 +8,6 @@ public class Key : MonoBehaviour
 
     public void Open()
     {
-        // drop on floor?
-        Destroy(gameObject);
+        gameObject.GetComponent<Pickuppable>().PutDown();
     }
 }
