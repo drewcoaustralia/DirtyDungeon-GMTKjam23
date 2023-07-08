@@ -6,7 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/CharacterController.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/Main Menu.unity
+    guid: a35df23cf7a1042a3aef30a7ba86aa81
+  - enabled: 1
+    path: Assets/Scenes/Level 1.unity
+    guid: 9eb3e2a6a0a644610b6d4096eb778b5a
+  - enabled: 1
+    path: Assets/Scenes/ComicStrip_TestScene.unity
+    guid: c19d0898711111a48ab1b2c48f6660fe
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

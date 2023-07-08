@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &582154402869618173
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8685278612374144099}
+  m_Layer: 0
+  m_Name: Interaction Raycast Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8685278612374144099
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582154402869618173}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.615, z: 0.48}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1912636129169008231}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2063374603384377379
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,6 +42,7 @@ GameObject:
   - component: {fileID: 1912636129169008231}
   - component: {fileID: 6896225186655222096}
   - component: {fileID: 3014207362208517360}
+  - component: {fileID: 5850093533032206057}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -31,6 +63,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4426712249433198650}
+  - {fileID: 8685278612374144099}
   m_Father: {fileID: 1248392598877026081}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -84,6 +117,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5850093533032206057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063374603384377379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085441b7f344504a8f933cd1a93c0e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rayDist: 2
+  emptyHanded: 0
+  raycastSource: {fileID: 8685278612374144099}
 --- !u!1 &5318704038278584112
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +227,6 @@ GameObject:
   - component: {fileID: 3638968147686152153}
   - component: {fileID: 90497569462513979}
   - component: {fileID: 7080781148820594604}
-  - component: {fileID: 8993769045836918854}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -201,7 +248,7 @@ Transform:
   m_Children:
   - {fileID: 1912636129169008231}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3638968147686152153
 MonoBehaviour:
@@ -219,7 +266,6 @@ MonoBehaviour:
   jumpStrength: 10
   visualBody: {fileID: 1912636129169008231}
   airControl: 0.15
-  isGrounded: 0
 --- !u!54 &90497569462513979
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -270,24 +316,3 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!135 &8993769045836918854
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7505287280778395387}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.4
-  m_Center: {x: 0, y: -0.12, z: 0}
