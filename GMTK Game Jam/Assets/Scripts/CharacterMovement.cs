@@ -6,10 +6,14 @@ public class CharacterMovement : MonoBehaviour {
 
   private Rigidbody rb;
 
-  [SerializeField] private float speed = 100f;
+  [SerializeField] private float speed = 70f;
+  [SerializeField] private float jumpStrength = 10f;
   [SerializeField] private Transform visualBody;
+  [SerializeField] private float airControl = 0.4f;
 
   private Vector3 playerInput;
+  private bool jumpPressed;
+  private bool isGrounded = true;
 
   void Awake() {
     rb = GetComponent<Rigidbody>();
@@ -18,12 +22,29 @@ public class CharacterMovement : MonoBehaviour {
   void Update() {
     playerInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
+    jumpPressed |= Input.GetButtonDown("Jump") && isGrounded;
+
     if (rb.velocity.magnitude > 1f) {
-      visualBody.rotation = Quaternion.LookRotation(rb.velocity);
+      var lookRotation = Vector3.Scale(rb.velocity, new Vector3(1, 0, 1));
+      if (lookRotation != Vector3.zero) {
+        visualBody.rotation = Quaternion.LookRotation(lookRotation);
+      }
     }
   }
 
   void FixedUpdate() {
-    rb.velocity += playerInput * speed;
+    var airControlInfluence = isGrounded ? 1f : airControl;
+    if (playerInput.magnitude < 0.5f) {
+      rb.velocity = Vector3.Scale(rb.velocity, new Vector3(0.91f, 1, 0.91f));
+    }
+    rb.velocity += playerInput * (speed * airControlInfluence);
+
+    var somethingBelow = Physics.Raycast(transform.position + new Vector3(0, 0.1f, 0), Vector3.down, out RaycastHit hit, 0.2f);
+    isGrounded = somethingBelow;
+
+    if (jumpPressed) {
+      rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
+      jumpPressed = false;
+    }
   }
 }
