@@ -7,34 +7,37 @@ public class InteractionController : MonoBehaviour
     public float rayDist = 2f;
     private IInteractable interactable;
     [SerializeField] private bool emptyHanded;
+    private Pickuppable objInHands = null;
+    public Transform raycastSource;
 
     void Awake()
     {
         emptyHanded = true;
         interactable = null;
+        if (raycastSource == null) raycastSource = transform;
     }
 
     void FixedUpdate()
     {
-        if (!emptyHanded)
-        {
-            // do stuff with held object only
-            if (Input.GetButtonDown("Fire1"))
-            {
-                if (interactable != null) interactable.Interact(gameObject);
-            }
-            return;
-        }
         RaycastHit hit;
         float rayDistActual = rayDist;
         Color color = Color.white;
-        bool ray = Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, rayDist);
+        int layerMask =~ LayerMask.GetMask("HeldObject");
+        bool ray = Physics.Raycast(raycastSource.position, raycastSource.TransformDirection(Vector3.forward), out hit, rayDist, layerMask);
         interactable = ray ? hit.transform.gameObject.GetComponent<IInteractable>() : null;
 
         // do stuff
         if (Input.GetButtonDown("Fire1"))
         {
-            if (interactable != null) interactable.Interact(gameObject);
+            if (!emptyHanded)
+            {
+                if (LookingAtChest())
+                {
+                    ((Chest)interactable).Add(objInHands.gameObject);
+                }
+                else objInHands.Interact(gameObject);
+            }
+            else if (interactable != null) interactable.Interact(gameObject);
         }
 
 
@@ -45,7 +48,13 @@ public class InteractionController : MonoBehaviour
             if (interactable != null) color = Color.green;
             else color = Color.red;
         }
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * rayDistActual, color);
+        Debug.DrawRay(raycastSource.position, raycastSource.TransformDirection(Vector3.forward) * rayDistActual, color);
+    }
+
+    public bool LookingAtChest()
+    {
+        if (interactable != null && ((MonoBehaviour)interactable).gameObject.tag == "chest") return true;
+        return false;
     }
 
     public void Hold(Pickuppable obj)
@@ -53,12 +62,12 @@ public class InteractionController : MonoBehaviour
         if (obj != null)
         {
             emptyHanded = false;
-            interactable = (IInteractable)obj;
+            objInHands = obj;
         }
         else
         {
             emptyHanded = true;
-            interactable = null;
+            objInHands = null;
         }
     }
 }
