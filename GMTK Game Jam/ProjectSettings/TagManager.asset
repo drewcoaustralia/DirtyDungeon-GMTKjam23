@@ -4,17 +4,18 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - chest
   - Pushable
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - HeldObject
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Environment
+  - Player
+  - OpenChest
   - 
   - 
   - 
