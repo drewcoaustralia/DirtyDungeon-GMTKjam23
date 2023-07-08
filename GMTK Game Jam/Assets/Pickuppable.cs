@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class Pickuppable : MonoBehaviour, IInteractable
 {
-    [SerializeField]
     private Collider _col;
-    [SerializeField]
-    private bool pickedUp = false;
-    [SerializeField]
+    [SerializeField] private bool pickedUp = false;
     private GameObject src;
     public float holdDist = 1f;
 
@@ -28,6 +25,7 @@ public class Pickuppable : MonoBehaviour, IInteractable
     {
         pickedUp = true;
         _col.isTrigger = true; // change physics layer instead
+        src.GetComponent<InteractionController>().Hold(this);
         transform.SetParent(src.transform, false);
         transform.localPosition = Vector3.forward * holdDist;
         transform.rotation = src.transform.rotation;
