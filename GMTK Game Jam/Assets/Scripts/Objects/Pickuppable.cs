@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Pickuppable : MonoBehaviour, IInteractable
 {
-    private Collider _col;
+    private Collider col;
+    private Rigidbody rb;
     [SerializeField] private bool pickedUp = false;
     private GameObject src;
     public float holdDist = 1f;
 
     void Awake()
     {
-        _col = GetComponent<Collider>();
+        col = GetComponent<Collider>();
+        rb = GetComponent<Rigidbody>();
     }
 
     public void Interact(GameObject source)
@@ -25,6 +27,9 @@ public class Pickuppable : MonoBehaviour, IInteractable
     {
         pickedUp = true;
         gameObject.layer = LayerMask.NameToLayer("HeldObject");
+        // rb.isKinematic = true;
+        rb.useGravity = false;
+        rb.constraints = RigidbodyConstraints.FreezeAll;
         src.GetComponent<InteractionController>().Hold(this);
         transform.SetParent(src.transform, false);
         transform.localPosition = Vector3.forward * holdDist;
@@ -42,6 +47,9 @@ public class Pickuppable : MonoBehaviour, IInteractable
         Debug.Log("Putting down!");
         pickedUp = false;
         gameObject.layer = LayerMask.NameToLayer("Environment");
+        // rb.isKinematic = false;
+        rb.useGravity = true;
+        rb.constraints = RigidbodyConstraints.None;
         src.GetComponent<InteractionController>().Hold(null);
         transform.SetParent(null, true);
     }
@@ -55,6 +63,9 @@ public class Pickuppable : MonoBehaviour, IInteractable
         Debug.Log("Putting in chest!");
         pickedUp = false;
         gameObject.layer = LayerMask.NameToLayer("Environment");
-        _col.enabled = false;
+        // rb.isKinematic = false;
+        // rb.useGravity = true;
+        // rb.constraints = RigidbodyConstraints.None;
+        col.enabled = false;
     }
 }
