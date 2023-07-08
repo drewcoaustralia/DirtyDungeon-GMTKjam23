@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MainMenuLogic : MonoBehaviour {
-    void Start() {
+    [SerializeField] private string gameSceneName;
 
+    public void HandlePlayButton() {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(gameSceneName);
     }
 
-    public void PlayGame() {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
+    public void HandleQuitButton() {
+        Application.Quit();
     }
 }
