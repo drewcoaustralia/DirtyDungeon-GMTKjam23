@@ -45,4 +45,16 @@ public class Pickuppable : MonoBehaviour, IInteractable
         src.GetComponent<InteractionController>().Hold(null);
         transform.SetParent(null, true);
     }
+
+    public void PutInChest(GameObject chest)
+    {
+        transform.SetParent(chest.transform, true);
+        //TODO Add animation/slerp
+        transform.position = chest.transform.position;
+        transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        Debug.Log("Putting in chest!");
+        pickedUp = false;
+        gameObject.layer = LayerMask.NameToLayer("Environment");
+        _col.enabled = false;
+    }
 }
