@@ -6,7 +6,9 @@ public class Coin : MonoBehaviour
 {
     void Awake()
     {
-        Physics.IgnoreCollision(GetComponent<Collider>(), transform.parent.GetComponent<Collider>());
-        transform.SetParent(null, true);
+        if (transform.parent != null) {
+            Physics.IgnoreCollision(GetComponent<Collider>(), transform.parent.GetComponent<Collider>());
+            transform.SetParent(null, true);
+        }
     }
 }

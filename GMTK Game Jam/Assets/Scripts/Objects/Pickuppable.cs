@@ -30,6 +30,7 @@ public class Pickuppable : MonoBehaviour, IInteractable
         // rb.isKinematic = true;
         rb.useGravity = false;
         rb.constraints = RigidbodyConstraints.FreezeAll;
+        col.enabled = false;
         src.GetComponent<InteractionController>().Hold(this);
         transform.SetParent(src.transform, false);
         transform.localPosition = Vector3.forward * holdDist;
@@ -50,6 +51,7 @@ public class Pickuppable : MonoBehaviour, IInteractable
         // rb.isKinematic = false;
         rb.useGravity = true;
         rb.constraints = RigidbodyConstraints.None;
+        col.enabled = true;
         src.GetComponent<InteractionController>().Hold(null);
         transform.SetParent(null, true);
     }
