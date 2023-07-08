@@ -6,6 +6,7 @@ TagManager:
   tags:
   - chest
   - Pushable
+  - floor
   layers:
   - Default
   - TransparentFX
