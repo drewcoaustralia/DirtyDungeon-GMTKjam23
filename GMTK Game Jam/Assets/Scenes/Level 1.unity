@@ -2357,7 +2357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 295521104}
-  timeLimit: 300
+  timeLimit: 30
   comicSceneName: ComicStrip_TestScene
 --- !u!1001 &3037269546091651271
 PrefabInstance:
