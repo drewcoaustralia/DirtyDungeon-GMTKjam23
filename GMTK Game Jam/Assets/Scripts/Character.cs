@@ -9,26 +9,36 @@ public class Character : MonoBehaviour {
   [SerializeField] private float speed = 100f;
   [SerializeField] private Transform visualBody;
 
+  private Vector3 playerInput;
+
   void Awake() {
     rb = GetComponent<Rigidbody>();
   }
 
   void Update() {
-    if (Input.GetKey(KeyCode.W)) {
-      rb.velocity += Vector3.forward * speed * Time.deltaTime;
-    }
-    if (Input.GetKey(KeyCode.S)) {
-      rb.velocity += Vector3.back * speed * Time.deltaTime;
-    }
-    if (Input.GetKey(KeyCode.A)) {
-      rb.velocity += Vector3.left * speed * Time.deltaTime;
-    }
-    if (Input.GetKey(KeyCode.D)) {
-      rb.velocity += Vector3.right * speed * Time.deltaTime;
-    }
+    playerInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
-    if (rb.velocity.magnitude > 0.4f) {
+    Debug.Log(playerInput);
+
+    // if (Input.GetKey(KeyCode.W)) {
+    //   playerInput += Vector3.forward;
+    // }
+    // if (Input.GetKey(KeyCode.S)) {
+    //   playerInput += Vector3.back;
+    // }
+    // if (Input.GetKey(KeyCode.A)) {
+    //   playerInput += Vector3.left;
+    // }
+    // if (Input.GetKey(KeyCode.D)) {
+    //   playerInput += Vector3.right;
+    // }
+
+    if (rb.velocity.magnitude > 1f) {
       visualBody.rotation = Quaternion.LookRotation(rb.velocity);
     }
+  }
+
+  void FixedUpdate() {
+    rb.velocity += playerInput * speed;
   }
 }

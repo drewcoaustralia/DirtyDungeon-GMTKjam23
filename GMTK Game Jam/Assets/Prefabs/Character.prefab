@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00f8e175e5804476b87f44858f2432aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
+  speed: 1.5
   visualBody: {fileID: 1912636129169008231}
 --- !u!54 &90497569462513979
 Rigidbody:
@@ -241,7 +241,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &7080781148820594604
 CapsuleCollider:
@@ -250,7 +250,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7505287280778395387}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2950ed2235b64443c89dbe6ccd06c5db, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
