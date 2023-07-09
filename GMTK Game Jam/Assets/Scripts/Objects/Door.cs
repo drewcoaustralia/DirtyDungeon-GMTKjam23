@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class Door : MonoBehaviour
+public class Door : MonoBehaviour, IInteractable
 {
     public string keyColor;
     public AudioClip openSFX;
+    public AudioClip lockedSFX;
     AudioSource audioSource;
     private bool startedOpening = false;
 
@@ -15,13 +16,24 @@ public class Door : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    void OnCollisionEnter(Collision col)
+    public bool UsableWithObj(GameObject obj)
+    {
+        if (obj.GetComponent<Key>() != null) return true;
+        return false;
+    }
+
+    public void Interact(GameObject source, GameObject obj=null)
     {
         if (startedOpening) return;
-        GameObject obj = col.gameObject;
-        Key key = obj.GetComponent<Key>();
-        if (key == null) return;
-        if (key.doorColor == keyColor)
+        InteractionController player = source.GetComponent<InteractionController>();
+        Key key = null;
+        if (!player.emptyHanded) key = obj.GetComponent<Key>();
+        if (player.emptyHanded || key==null || key.keyColor != keyColor)
+        {
+            audioSource.PlayOneShot(lockedSFX);
+            return;
+        }
+        else
         {
             key.Open();
             Open();

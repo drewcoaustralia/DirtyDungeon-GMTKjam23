@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Key : MonoBehaviour
 {
-    public string doorColor;
+    public string keyColor;
 
     public void Open()
     {

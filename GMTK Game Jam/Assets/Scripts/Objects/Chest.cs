@@ -10,35 +10,46 @@ public class Chest : MonoBehaviour, IInteractable
     public float openSpeed = 0.5f;
     public float openAngle = -47.555f;
     [SerializeField] private GameObject top;
+    [SerializeField] private GameObject empty;
+    [SerializeField] private GameObject full;
+    [Min(1)]public int maxItems;
+    public bool isFull;
+    public List<GameObject> inventory;
     private Quaternion targetRotation;
     private float startTime = 0f;
     private Collider col;
     public AudioClip openSFX;
     public AudioClip closeSFX;
+    public AudioClip dumpSFX;
+    public AudioClip denySFX;
     AudioSource audioSource;
-
-    [SerializeField] private MeshRenderer emptyChestModel;
-    [SerializeField] private MeshRenderer goldChestModel;
 
     void Awake()
     {
         col = GetComponent<Collider>();
         targetRotation = Quaternion.Euler(0, transform.localEulerAngles.y, transform.localEulerAngles.z);
         audioSource = GetComponent<AudioSource>();
+        isFull = inventory.Count >= maxItems;
+        empty.SetActive(!isFull);
+        full.SetActive(isFull);
     }
 
-    void Start() {
-        isMoving = true;
-        startTime = Time.time;
-        Open();
-    }
-
-    public void Interact(GameObject source)
+    public bool UsableWithObj(GameObject obj)
     {
-        isMoving = true;
-        startTime = Time.time;
-        if (isOpen) Close();
-        else Open();
+        if (obj.GetComponent<Coin>() != null) return true;
+        return false;
+    }
+
+    public void Interact(GameObject source, GameObject obj=null)
+    {
+        if (obj==null)
+        {
+            isMoving = true;
+            startTime = Time.time;
+            if (isOpen) Close();
+            else Open();
+        }
+        else Add(obj);
     }
 
     void Update()
@@ -71,13 +82,22 @@ public class Chest : MonoBehaviour, IInteractable
 
     public void Add(GameObject obj)
     {
+        if (isFull || !isOpen)
+        {
+            audioSource.PlayOneShot(denySFX);
+            return;
+        }
+        audioSource.PlayOneShot(dumpSFX);
         obj.GetComponent<Pickuppable>().PutInChest(gameObject);
-        Destroy(obj);
-        emptyChestModel.enabled = false;
-        goldChestModel.enabled = true;
-
-        if (TryGetComponent(out TaskInstance taskInstance)) {
-            taskInstance.Complete();
+        inventory.Add(obj);
+        isFull = inventory.Count >= maxItems;
+        if (isFull)
+        {
+            empty.SetActive(!isFull);
+            full.SetActive(isFull);
+            if (TryGetComponent(out TaskInstance taskInstance)) {
+                taskInstance.Complete();
+            }
         }
     }
 }
