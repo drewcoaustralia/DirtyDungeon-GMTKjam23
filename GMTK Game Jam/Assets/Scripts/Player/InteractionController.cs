@@ -5,8 +5,8 @@ using UnityEngine;
 public class InteractionController : MonoBehaviour
 {
     private IInteractable interactable;
-    [SerializeField] private bool emptyHanded;
-    private Pickuppable objInHands = null;
+    public bool emptyHanded { get; private set; }
+    public Pickuppable objInHands { get; private set; }
     public Transform raycastSource;
     public float rayDist = 2f;
     public Vector3 boxCastSize;
@@ -14,6 +14,7 @@ public class InteractionController : MonoBehaviour
 
     void Awake()
     {
+        objInHands = null;
         emptyHanded = true;
         interactable = null;
         if (raycastSource == null) raycastSource = transform;
@@ -32,15 +33,15 @@ public class InteractionController : MonoBehaviour
         // do stuff
         if (Input.GetButtonDown("Fire1"))
         {
-            if (!emptyHanded)
+            if (emptyHanded)
             {
-                if (LookingAtChest())
-                {
-                    ((Chest)interactable).Add(objInHands.gameObject);
-                }
-                else objInHands.Interact(gameObject);
+                if (interactable != null) interactable.Interact(gameObject);
             }
-            else if (interactable != null) interactable.Interact(gameObject);
+            else // object in hands
+            {
+                if (interactable==null) objInHands.Interact(gameObject);
+                else if (interactable.UsableWithObj(objInHands.gameObject)) interactable.Interact(gameObject,objInHands.gameObject);
+            }
         }
 
 

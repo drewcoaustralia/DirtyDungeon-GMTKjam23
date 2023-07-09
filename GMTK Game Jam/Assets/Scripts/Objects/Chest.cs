@@ -34,12 +34,22 @@ public class Chest : MonoBehaviour, IInteractable
         full.SetActive(isFull);
     }
 
-    public void Interact(GameObject source)
+    public bool UsableWithObj(GameObject obj)
     {
-        isMoving = true;
-        startTime = Time.time;
-        if (isOpen) Close();
-        else Open();
+        if (obj.GetComponent<Coin>() != null) return true;
+        return false;
+    }
+
+    public void Interact(GameObject source, GameObject obj=null)
+    {
+        if (obj==null)
+        {
+            isMoving = true;
+            startTime = Time.time;
+            if (isOpen) Close();
+            else Open();
+        }
+        else Add(obj);
     }
 
     void Update()

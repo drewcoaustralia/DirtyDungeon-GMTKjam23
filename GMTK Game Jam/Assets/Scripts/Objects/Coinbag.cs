@@ -22,6 +22,11 @@ public class Coinbag : MonoBehaviour, IInteractable
         CheckModel();
     }
 
+    public bool UsableWithObj(GameObject obj)
+    {
+        return false;
+    }
+
     void CheckModel()
     {
         if (coinCount <= 0)
@@ -37,7 +42,7 @@ public class Coinbag : MonoBehaviour, IInteractable
         }
     }
 
-    public void Interact(GameObject source)
+    public void Interact(GameObject source, GameObject obj=null)
     {
         coinCount--;
         GameObject newCoin = Instantiate(coin, transform.position+Vector3.up, Quaternion.identity, transform);

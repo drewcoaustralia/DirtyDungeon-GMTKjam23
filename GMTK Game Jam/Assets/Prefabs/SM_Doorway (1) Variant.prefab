@@ -190,7 +190,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 45ef0bc56b94bb64b84f3ea971dcb71a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 45ef0bc56b94bb64b84f3ea971dcb71a,
         type: 3}
@@ -474,6 +474,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyColor: cyan
   openSFX: {fileID: 8300000, guid: 19925e2804477614cb0202368f9ad96d, type: 3}
+  lockedSFX: {fileID: 8300000, guid: d0937494b3aa8dc4da04d6cecad1218a, type: 3}
 --- !u!65 &6842678924414682333
 BoxCollider:
   m_ObjectHideFlags: 0

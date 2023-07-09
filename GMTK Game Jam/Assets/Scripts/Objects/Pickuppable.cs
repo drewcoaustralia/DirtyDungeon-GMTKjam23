@@ -29,6 +29,11 @@ public class Pickuppable : MonoBehaviour, IInteractable
         audioSource = GetComponent<AudioSource>();
     }
 
+    public bool UsableWithObj(GameObject obj)
+    {
+        return false;
+    }
+
     void Update()
     {
         if (animated && startTime != Mathf.Infinity)
@@ -44,7 +49,7 @@ public class Pickuppable : MonoBehaviour, IInteractable
         }
     }
 
-    public void Interact(GameObject source)
+    public void Interact(GameObject source, GameObject obj=null)
     {
         src = source;
         if (!pickedUp) Pickup();
@@ -57,7 +62,7 @@ public class Pickuppable : MonoBehaviour, IInteractable
         audioSource.PlayOneShot(pickupSFX);
         pickedUp = true;
         gameObject.layer = LayerMask.NameToLayer("HeldObject");
-        // rb.isKinematic = true;
+        rb.isKinematic = true;
         rb.useGravity = false;
         rb.constraints = RigidbodyConstraints.FreezeAll;
         col.enabled = false;
@@ -75,10 +80,10 @@ public class Pickuppable : MonoBehaviour, IInteractable
 
     public void PutDown()
     {
-        // audioSource.PlayOneShot(putdownSFX);
+        audioSource.PlayOneShot(putdownSFX);
         pickedUp = false;
         gameObject.layer = LayerMask.NameToLayer("Environment");
-        // rb.isKinematic = false;
+        rb.isKinematic = false;
         rb.useGravity = true;
         rb.constraints = RigidbodyConstraints.None;
         col.enabled = true;
