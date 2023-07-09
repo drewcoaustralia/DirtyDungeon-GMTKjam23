@@ -87,11 +87,22 @@ public class Pickuppable : MonoBehaviour, IInteractable
     void TryPutDown()
     {
         //if cond
+        src.GetComponent<InteractionController>().Hold(null);
         PutDown();
     }
 
     public void PutDown()
     {
+        EnablePhysics();
+        rb.AddForce((transform.up+transform.forward) * throwForce); // ADD RANDOM ROTATION
+        rb.AddTorque(transform.right * throwForce*.1f);
+        rb.AddTorque(transform.forward * throwForce*.1f);
+        rb.AddTorque(transform.up * throwForce*.1f);
+    }
+
+    public void EnablePhysics()
+    {
+        StopAnimation();
         if (gameObject.GetComponent<Broom>() != null) gameObject.GetComponent<Broom>().PutDown();
         pickedUp = false;
         gameObject.layer = LayerMask.NameToLayer("Environment");
@@ -99,12 +110,7 @@ public class Pickuppable : MonoBehaviour, IInteractable
         rb.useGravity = true;
         rb.constraints = RigidbodyConstraints.None;
         col.enabled = true;
-        src.GetComponent<InteractionController>().Hold(null);
         transform.SetParent(null, true);
-        rb.AddForce((transform.up+transform.forward) * throwForce); // ADD RANDOM ROTATION
-        rb.AddTorque(transform.right * throwForce*.1f);
-        rb.AddTorque(transform.forward * throwForce*.1f);
-        rb.AddTorque(transform.up * throwForce*.1f);
     }
 
     public void PutInChest(GameObject chest)
@@ -145,6 +151,10 @@ public class Pickuppable : MonoBehaviour, IInteractable
 
     void OnCollisionEnter(Collision collision)
     {
+        // if (!notYetAnimated && collision.gameObject.GetComponent<Pickuppable>() != null && collision.gameObject.GetComponent<Broom>() == null)
+        // {
+        //     collision.gameObject.GetComponent<Pickuppable>().EnablePhysics();
+        // }
         if (collisionSFX.Count != 0 && !notYetAnimated && collision.gameObject.layer == LayerMask.NameToLayer("Environment"))
         {
             int idx = Random.Range (0, collisionSFX.Count);

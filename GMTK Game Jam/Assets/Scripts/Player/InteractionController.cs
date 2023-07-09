@@ -19,6 +19,7 @@ public class InteractionController : MonoBehaviour
     public GameObject broom;
     public List<AudioClip> throwSFX;
     AudioSource audioSource;
+    public BroomForce broomForce;
 
     void Awake()
     {
@@ -111,6 +112,7 @@ public class InteractionController : MonoBehaviour
         if (rayHit)
         {
             Debug.Log("Raycasting with: "+hit.transform.gameObject);
+            if (broomInHands) broomForce.ApplyForce(hit.transform.gameObject);
             rayDistActual = hit.distance;
             if (interactable != null) color = Color.green;
             else color = Color.red;
