@@ -20,11 +20,12 @@ public class Pickuppable : MonoBehaviour, IInteractable
     private bool movingUp = true;
     public List<AudioClip> pickupSFX;
     private float pickupDuration;
-    public List<AudioClip> putdownSFX;
-    private float putdownDuration;
+    public List<AudioClip> collisionSFX;
+    private float collisionDuration;
     AudioSource audioSource;
     public float throwForce = 100f;
     private bool shatterable;
+    private bool notYetAnimated = true;
 
     void Awake()
     {
@@ -80,31 +81,36 @@ public class Pickuppable : MonoBehaviour, IInteractable
         transform.SetParent(src.transform, false);
         transform.localPosition = Vector3.forward * holdDist;
         transform.rotation = src.transform.rotation;
+        if (gameObject.GetComponent<Broom>() != null) gameObject.GetComponent<Broom>().Pickup();
     }
 
     void TryPutDown()
     {
         //if cond
+        src.GetComponent<InteractionController>().Hold(null);
         PutDown();
     }
 
     public void PutDown()
     {
-        if (putdownSFX.Count != 0)
-        {
-            int idx = Random.Range (0, putdownSFX.Count);
-            audioSource.PlayOneShot(putdownSFX[idx]);
-            putdownDuration = putdownSFX[idx].length;
-        }
+        EnablePhysics();
+        rb.AddForce((transform.up+transform.forward) * throwForce); // ADD RANDOM ROTATION
+        rb.AddTorque(transform.right * throwForce*.1f);
+        rb.AddTorque(transform.forward * throwForce*.1f);
+        rb.AddTorque(transform.up * throwForce*.1f);
+    }
+
+    public void EnablePhysics()
+    {
+        StopAnimation();
+        if (gameObject.GetComponent<Broom>() != null) gameObject.GetComponent<Broom>().PutDown();
         pickedUp = false;
         gameObject.layer = LayerMask.NameToLayer("Environment");
         rb.isKinematic = false;
         rb.useGravity = true;
         rb.constraints = RigidbodyConstraints.None;
         col.enabled = true;
-        src.GetComponent<InteractionController>().Hold(null);
         transform.SetParent(null, true);
-        rb.AddForce((transform.up+transform.forward) * throwForce); // ADD RANDOM ROTATION
     }
 
     public void PutInChest(GameObject chest)
@@ -125,6 +131,7 @@ public class Pickuppable : MonoBehaviour, IInteractable
 
     void StartAnimation()
     {
+        notYetAnimated = false;
         rb.isKinematic = true; //for spinning
         startTime = Time.deltaTime;
         bottom = transform.position;
@@ -144,6 +151,19 @@ public class Pickuppable : MonoBehaviour, IInteractable
 
     void OnCollisionEnter(Collision collision)
     {
-        if (animated && collision.gameObject.tag == "floor" && !shatterable) StartAnimation();
+        // if (!notYetAnimated && collision.gameObject.GetComponent<Pickuppable>() != null && collision.gameObject.GetComponent<Broom>() == null)
+        // {
+        //     collision.gameObject.GetComponent<Pickuppable>().EnablePhysics();
+        // }
+        if (collisionSFX.Count != 0 && !notYetAnimated && collision.gameObject.layer == LayerMask.NameToLayer("Environment"))
+        {
+            int idx = Random.Range (0, collisionSFX.Count);
+            audioSource.PlayOneShot(collisionSFX[idx]);
+            collisionDuration = collisionSFX[idx].length;
+        }
+        if (animated && collision.gameObject.tag == "floor" && notYetAnimated && !shatterable)
+        {
+            StartAnimation();
+        }
     }
 }

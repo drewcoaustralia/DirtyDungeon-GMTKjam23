@@ -89,9 +89,38 @@ MonoBehaviour:
   floatDur: 1.25
   heightChange: 0.25
   pickupSFX:
-  - {fileID: 8300000, guid: 36db2ea90964b1546afea9a186415eaa, type: 3}
-  putdownSFX:
-  - {fileID: 8300000, guid: 0191ab9eef9b7af45b9f398731def771, type: 3}
+  - {fileID: 8300000, guid: c8048b5e66210d6428b967d0f9771fce, type: 3}
+  - {fileID: 8300000, guid: 5524daa2c6dd15d488c89d3164203b8d, type: 3}
+  - {fileID: 8300000, guid: 6772f49a2e741a244aeff4fd69740d12, type: 3}
+  - {fileID: 8300000, guid: 1a6535f880e0da5428049d857b45c618, type: 3}
+  - {fileID: 8300000, guid: 7867d78b26977a3488cdcd778a1bb65e, type: 3}
+  - {fileID: 8300000, guid: 5b909472c5ef77b4d934023b5bf0f331, type: 3}
+  - {fileID: 8300000, guid: 0fe671a830f877646a41b75b65959b8e, type: 3}
+  - {fileID: 8300000, guid: 07f2716730fb56e479c471f567f5b0b8, type: 3}
+  - {fileID: 8300000, guid: e80a3cc39e7a99545b0d730a091c2c69, type: 3}
+  - {fileID: 8300000, guid: a79dc4e863edcaa4d930175219d6e120, type: 3}
+  - {fileID: 8300000, guid: fcf1fd27953b82049b100a679c7ba085, type: 3}
+  - {fileID: 8300000, guid: 81783cbea7df2294b9eb53c063078067, type: 3}
+  - {fileID: 8300000, guid: 3d20686619aa7b947bb2ea7b44d18caa, type: 3}
+  - {fileID: 8300000, guid: fed5180816b668a4797c4b1f642fe3d6, type: 3}
+  - {fileID: 8300000, guid: a1cbf38d80d0aca4299fefa9ce87e98d, type: 3}
+  collisionSFX:
+  - {fileID: 8300000, guid: a4d04a2f25f3de34cbd48d9f2043f31a, type: 3}
+  - {fileID: 8300000, guid: 29aeeda6244bc3a4ead1956feae3b37a, type: 3}
+  - {fileID: 8300000, guid: f973e3c33e756934ea774221b959beaf, type: 3}
+  - {fileID: 8300000, guid: 3a6c3a257ba6a4f4db7c3e8f45577198, type: 3}
+  - {fileID: 8300000, guid: 6a90d0f8963382a489e1c7eafd33fcef, type: 3}
+  - {fileID: 8300000, guid: b8d3de3fb7e17f34faaaa2915f0cf500, type: 3}
+  - {fileID: 8300000, guid: 833b5a823a274924ea1b172174228806, type: 3}
+  - {fileID: 8300000, guid: 0e9112f82751aef41b76cdf62175db7e, type: 3}
+  - {fileID: 8300000, guid: 9260a4d98f291ab47b09469c5c75c8a8, type: 3}
+  - {fileID: 8300000, guid: 47147437d73cdd14f8491b25a5ebde0e, type: 3}
+  - {fileID: 8300000, guid: ab8eb9e5f0229da419a0ba60c690ec12, type: 3}
+  - {fileID: 8300000, guid: 42cb3767a450d10488a16c3f8469dd3c, type: 3}
+  - {fileID: 8300000, guid: 12381c74a7fda7441af01df5f100831c, type: 3}
+  - {fileID: 8300000, guid: a9577b5544bccf64a9dcaedeb21a793e, type: 3}
+  - {fileID: 8300000, guid: cce6f2a0ac804de4bb3ab55456f5d4c3, type: 3}
+  - {fileID: 8300000, guid: f87344e9b6b59764a9b070d630418c2d, type: 3}
   throwForce: 300
 --- !u!54 &5373376622659281975
 Rigidbody:
