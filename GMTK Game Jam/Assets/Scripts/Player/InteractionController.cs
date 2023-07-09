@@ -44,10 +44,12 @@ public class InteractionController : MonoBehaviour
         // drawing
         if (ray)
         {
+            Debug.Log("Raycasting with: "+hit.transform.gameObject);
             rayDistActual = hit.distance;
             if (interactable != null) color = Color.green;
             else color = Color.red;
         }
+        else Debug.Log("Raycasting with: NONE");
         Debug.DrawRay(raycastSource.position, raycastSource.TransformDirection(Vector3.forward) * rayDistActual, color);
     }
 
