@@ -100,6 +100,9 @@ public class Pickuppable : MonoBehaviour, IInteractable
         src.GetComponent<InteractionController>().Hold(null);
         transform.SetParent(null, true);
         rb.AddForce((transform.up+transform.forward) * throwForce); // ADD RANDOM ROTATION
+        rb.AddTorque(transform.right * throwForce*.1f);
+        rb.AddTorque(transform.forward * throwForce*.1f);
+        rb.AddTorque(transform.up * throwForce*.1f);
     }
 
     public void PutInChest(GameObject chest)

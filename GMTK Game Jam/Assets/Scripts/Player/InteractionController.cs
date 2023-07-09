@@ -15,6 +15,7 @@ public class InteractionController : MonoBehaviour
     public Vector3 boxCastSize;
     private bool rayHit = false;
     public Animator anim;
+    public GameObject broom;
 
     void Awake()
     {
@@ -66,6 +67,7 @@ public class InteractionController : MonoBehaviour
                         {
                             anim.SetBool("isSweeping", true);
                             broomInHands = true;
+                            broom.SetActive(true);
                         }
                     }
                     else
@@ -83,6 +85,7 @@ public class InteractionController : MonoBehaviour
                     anim.SetBool("isHolding", false);
                     anim.SetBool("isSweeping", false);
                     broomInHands = false;
+                    broom.SetActive(false);
                     anim.SetTrigger("putdown");
                     objInHands.Interact(gameObject);
                 }
