@@ -10,11 +10,12 @@ public class LevelManager : MonoBehaviour {
     [SerializeField] private string comicSceneName;
 
     private bool comicSceneLoadStarted = false;
+    public Hourglass hourglass;
 
 
     void Start() {
-        timeRemaining = timeLimit;
-
+        // timeRemaining = GetComponent<AudioSource>().clip.length;
+        hourglass.Init(timeRemaining);
     }
 
     void Update() {
