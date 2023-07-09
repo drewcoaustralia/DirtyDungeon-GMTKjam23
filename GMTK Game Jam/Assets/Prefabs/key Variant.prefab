@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: ead2427176a681644b3a4425fc42dcbb,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ead2427176a681644b3a4425fc42dcbb,
         type: 3}
@@ -135,8 +135,10 @@ MonoBehaviour:
   spinSpeed: 75
   floatDur: 1.25
   heightChange: 0.25
-  pickupSFX: {fileID: 8300000, guid: 36db2ea90964b1546afea9a186415eaa, type: 3}
-  putdownSFX: {fileID: 8300000, guid: 0191ab9eef9b7af45b9f398731def771, type: 3}
+  pickupSFX:
+  - {fileID: 8300000, guid: 36db2ea90964b1546afea9a186415eaa, type: 3}
+  putdownSFX:
+  - {fileID: 8300000, guid: 0191ab9eef9b7af45b9f398731def771, type: 3}
   throwForce: 300
 --- !u!54 &9055921434617194305
 Rigidbody:

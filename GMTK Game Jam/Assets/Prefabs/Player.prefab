@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  turnSpeed: 3
+  turnSpeed: 720
   anim: {fileID: 1812028431578969313}
 --- !u!1 &6153243336976319174
 GameObject:
@@ -352,17 +352,17 @@ PrefabInstance:
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: f034300616183bb4295e44f9d2ec38d6, type: 2}
+      objectReference: {fileID: 2100000, guid: 58be701bd1ddf4f4990cf226d84bba0f, type: 2}
     - target: {fileID: -1899422749901049055, guid: e2b4c43aa66658d4da802a98a120915b,
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 1c4548ca1fc5f284396a3240437cf6e1, type: 2}
+      objectReference: {fileID: 2100000, guid: 58be701bd1ddf4f4990cf226d84bba0f, type: 2}
     - target: {fileID: 49899555948424249, guid: e2b4c43aa66658d4da802a98a120915b,
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: e095caafd1b908a4cb9c2eeeba321280, type: 2}
+      objectReference: {fileID: 2100000, guid: 58be701bd1ddf4f4990cf226d84bba0f, type: 2}
     - target: {fileID: 919132149155446097, guid: e2b4c43aa66658d4da802a98a120915b,
         type: 3}
       propertyPath: m_Name
@@ -372,17 +372,17 @@ PrefabInstance:
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 670e657433835a647a5c8cbbd81241ad, type: 2}
+      objectReference: {fileID: 2100000, guid: 58be701bd1ddf4f4990cf226d84bba0f, type: 2}
     - target: {fileID: 5386357640783374953, guid: e2b4c43aa66658d4da802a98a120915b,
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 670e657433835a647a5c8cbbd81241ad, type: 2}
+      objectReference: {fileID: 2100000, guid: 58be701bd1ddf4f4990cf226d84bba0f, type: 2}
     - target: {fileID: 6135197876687756668, guid: e2b4c43aa66658d4da802a98a120915b,
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 670e657433835a647a5c8cbbd81241ad, type: 2}
+      objectReference: {fileID: 2100000, guid: 58be701bd1ddf4f4990cf226d84bba0f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 825894089210680117, guid: e2b4c43aa66658d4da802a98a120915b, type: 3}
