@@ -18,8 +18,10 @@ public class Pickuppable : MonoBehaviour, IInteractable
     private Vector3 bottom;
     private Vector3 top;
     private bool movingUp = true;
-    public AudioClip pickupSFX;
-    public AudioClip putdownSFX;
+    public List<AudioClip> pickupSFX;
+    private float pickupDuration;
+    public List<AudioClip> putdownSFX;
+    private float putdownDuration;
     AudioSource audioSource;
     public float throwForce = 100f;
     private bool shatterable;
@@ -62,7 +64,12 @@ public class Pickuppable : MonoBehaviour, IInteractable
     void Pickup()
     {
         StopAnimation();
-        audioSource.PlayOneShot(pickupSFX);
+        if (pickupSFX.Count != 0)
+        {
+            int idx = Random.Range (0, pickupSFX.Count);
+            audioSource.PlayOneShot(pickupSFX[idx]);
+            pickupDuration = pickupSFX[idx].length;
+        }
         pickedUp = true;
         gameObject.layer = LayerMask.NameToLayer("HeldObject");
         rb.isKinematic = true;
@@ -83,7 +90,12 @@ public class Pickuppable : MonoBehaviour, IInteractable
 
     public void PutDown()
     {
-        audioSource.PlayOneShot(putdownSFX);
+        if (putdownSFX.Count != 0)
+        {
+            int idx = Random.Range (0, putdownSFX.Count);
+            audioSource.PlayOneShot(putdownSFX[idx]);
+            putdownDuration = putdownSFX[idx].length;
+        }
         pickedUp = false;
         gameObject.layer = LayerMask.NameToLayer("Environment");
         rb.isKinematic = false;

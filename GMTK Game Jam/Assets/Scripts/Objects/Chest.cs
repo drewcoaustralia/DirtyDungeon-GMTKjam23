@@ -18,10 +18,14 @@ public class Chest : MonoBehaviour, IInteractable
     private Quaternion targetRotation;
     private float startTime = 0f;
     private Collider col;
-    public AudioClip openSFX;
-    public AudioClip closeSFX;
-    public AudioClip dumpSFX;
-    public AudioClip denySFX;
+    public List<AudioClip> openSFX;
+    public List<AudioClip> closeSFX;
+    public List<AudioClip> dumpSFX;
+    public List<AudioClip> fullSFX;
+    public float openDuration;
+    public float closeDuration;
+    public float dumpDuration;
+    public float fullDuration;
     AudioSource audioSource;
 
     void Awake()
@@ -67,14 +71,24 @@ public class Chest : MonoBehaviour, IInteractable
 
     void Open()
     {
-        audioSource.PlayOneShot(openSFX);
+        if (openSFX.Count != 0)
+        {
+            int idx = Random.Range (0, openSFX.Count);
+            audioSource.PlayOneShot(openSFX[idx]);
+            openDuration = openSFX[idx].length;
+        }
         targetRotation = Quaternion.Euler(openAngle, transform.localEulerAngles.y, transform.localEulerAngles.z);
         gameObject.layer = LayerMask.NameToLayer("OpenChest");
     }
 
     void Close()
     {
-        audioSource.PlayOneShot(closeSFX);
+        if (closeSFX.Count != 0)
+        {
+            int idx = Random.Range (0, closeSFX.Count);
+            audioSource.PlayOneShot(closeSFX[idx]);
+            closeDuration = closeSFX[idx].length;
+        }
         targetRotation = Quaternion.Euler(0, transform.localEulerAngles.y, transform.localEulerAngles.z);
         gameObject.layer = LayerMask.NameToLayer("Environment");
         //TODO ADD LOGIC TO EAT OR PUSH AWAY COLLIDING OBJECTS FIRST
@@ -84,10 +98,20 @@ public class Chest : MonoBehaviour, IInteractable
     {
         if (isFull || !isOpen)
         {
-            audioSource.PlayOneShot(denySFX);
+            if (fullSFX.Count != 0)
+            {
+                int idx = Random.Range (0, fullSFX.Count);
+                audioSource.PlayOneShot(fullSFX[idx]);
+                fullDuration = fullSFX[idx].length;
+            }
             return;
         }
-        audioSource.PlayOneShot(dumpSFX);
+        if (dumpSFX.Count != 0)
+        {
+            int idx = Random.Range (0, dumpSFX.Count);
+            audioSource.PlayOneShot(dumpSFX[idx]);
+            dumpDuration = dumpSFX[idx].length;
+        }
         obj.GetComponent<Pickuppable>().PutInChest(gameObject);
         inventory.Add(obj);
         isFull = inventory.Count >= maxItems;

@@ -34,7 +34,7 @@ Transform:
   - {fileID: 8905545026300138157}
   - {fileID: 193286731327032681}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &8353256689033408289
 SphereCollider:
@@ -71,7 +71,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coin: {fileID: 6781203889422857807, guid: 20197b2d256b9d649817313ea0452a08, type: 3}
   force: 5
-  dispenseSFX: {fileID: 8300000, guid: 5ab5572f1b76f6b47a1c542580327800, type: 3}
+  dispenseSFX:
+  - {fileID: 8300000, guid: 5ab5572f1b76f6b47a1c542580327800, type: 3}
   largeStack: {fileID: 8132668219131267095}
   smallStack: {fileID: 713083793157330899}
   coinCount: 5
