@@ -11,6 +11,7 @@ public class InteractionController : MonoBehaviour
     public float rayDist = 2f;
     public Vector3 boxCastSize;
     private bool rayHit = false;
+    public Animator anim;
 
     void Awake()
     {
@@ -37,12 +38,24 @@ public class InteractionController : MonoBehaviour
         {
             if (emptyHanded)
             {
-                if (interactable != null) interactable.Interact(gameObject);
+                if (interactable != null)
+                {
+                    interactable.Interact(gameObject);
+                    anim.SetTrigger("Interacting");
+                }
             }
             else // object in hands
             {
-                if (interactable==null) objInHands.Interact(gameObject);
-                else if (interactable.UsableWithObj(objInHands.gameObject)) interactable.Interact(gameObject,objInHands.gameObject);
+                if (interactable==null)
+                {
+                    objInHands.Interact(gameObject);
+                    anim.SetTrigger("Interacting");
+                }
+                else if (interactable.UsableWithObj(objInHands.gameObject))
+                {
+                    interactable.Interact(gameObject,objInHands.gameObject);
+                    anim.SetTrigger("Interacting");
+                }
             }
         }
 
