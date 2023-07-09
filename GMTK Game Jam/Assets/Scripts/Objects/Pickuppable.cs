@@ -98,6 +98,8 @@ public class Pickuppable : MonoBehaviour, IInteractable
         // rb.useGravity = true;
         // rb.constraints = RigidbodyConstraints.None;
         col.enabled = false;
+        src.GetComponent<InteractionController>().Hold(null);
+        gameObject.SetActive(false);
     }
 
     void StartAnimation()
