@@ -5,14 +5,16 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour {
     [SerializeField] private Text timerText;
-    [SerializeField] private float timeLimit = 30f;
+    [SerializeField] private float timeLimit = 120f;
     private float timeRemaining = 30f;
     [SerializeField] private string comicSceneName;
 
     private bool comicSceneLoadStarted = false;
-    
+
+
     void Start() {
         timeRemaining = timeLimit;
+
     }
 
     void Update() {
@@ -25,4 +27,5 @@ public class LevelManager : MonoBehaviour {
             comicSceneLoadStarted = true;
         }
     }
+
 }

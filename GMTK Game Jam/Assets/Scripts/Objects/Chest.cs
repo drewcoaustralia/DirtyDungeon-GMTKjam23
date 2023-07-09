@@ -95,6 +95,9 @@ public class Chest : MonoBehaviour, IInteractable
         {
             empty.SetActive(!isFull);
             full.SetActive(isFull);
+            if (TryGetComponent(out TaskInstance taskInstance)) {
+                taskInstance.Complete();
+            }
         }
     }
 }

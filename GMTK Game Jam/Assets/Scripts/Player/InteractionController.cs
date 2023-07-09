@@ -30,6 +30,8 @@ public class InteractionController : MonoBehaviour
         // rayHit = Physics.Raycast(raycastSource.position, raycastSource.TransformDirection(Vector3.forward), out hit, rayDist, layerMask);
         interactable = rayHit ? hit.transform.gameObject.GetComponent<IInteractable>() : null;
 
+        if (objInHands == null) emptyHanded = true;
+
         // do stuff
         if (Input.GetButtonDown("Fire1"))
         {
