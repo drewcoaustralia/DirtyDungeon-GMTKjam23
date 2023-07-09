@@ -8,8 +8,8 @@ public class BinArea : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Pushable"))
-        {
+        if (other.gameObject.TryGetComponent<Trash>(out Trash trash)) {
+            trash.Clean();
             PlayParticleEffect(other.gameObject);
         }
     }
@@ -17,6 +17,5 @@ public class BinArea : MonoBehaviour
     void PlayParticleEffect(GameObject other)
     {
         GameObject particle = Instantiate(vfx.transform, other.transform).gameObject;
-        Destroy(other.gameObject, 0.15f);
     }
 }
