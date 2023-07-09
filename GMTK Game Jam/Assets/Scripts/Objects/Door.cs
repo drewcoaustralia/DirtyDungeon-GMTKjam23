@@ -7,14 +7,15 @@ public class Door : MonoBehaviour, IInteractable
 {
     public string keyColor;
     public Color hueShift;
-    public AudioClip openSFX;
-    public AudioClip lockedSFX;
+    public List<AudioClip> openSFX;
+    public List<AudioClip> lockedSFX;
     AudioSource audioSource;
     private bool startedOpening = false;
     public GameObject leftDoor;
     public GameObject rightDoor;
     public float openAngle;
     private float startTime;
+    private float openDuration;
 
     void Awake()
     {
@@ -36,7 +37,11 @@ public class Door : MonoBehaviour, IInteractable
         if (!player.emptyHanded) key = obj.GetComponent<Key>();
         if (player.emptyHanded || key==null || key.keyColor != keyColor)
         {
-            audioSource.PlayOneShot(lockedSFX);
+            if (lockedSFX.Count != 0)
+            {
+                int idx = Random.Range (0, lockedSFX.Count);
+                audioSource.PlayOneShot(lockedSFX[idx]);
+            }
             return;
         }
         else
@@ -50,7 +55,7 @@ public class Door : MonoBehaviour, IInteractable
     {
         if (startedOpening)
         {
-            float currentAngle = openAngle * ((Time.time - startTime) / openSFX.length);
+            float currentAngle = openAngle * ((Time.time - startTime) / openDuration);
             currentAngle = Mathf.Clamp(currentAngle, 0, openAngle);
             leftDoor.transform.localEulerAngles = new Vector3(0, -currentAngle, 0);
             rightDoor.transform.localEulerAngles = new Vector3(0, currentAngle, 0);
@@ -60,11 +65,16 @@ public class Door : MonoBehaviour, IInteractable
     void Open()
     {
         startedOpening = true;
-        audioSource.PlayOneShot(openSFX);
+        if (openSFX.Count != 0)
+        {
+            int idx = Random.Range (0, openSFX.Count);
+            audioSource.PlayOneShot(openSFX[idx]);
+            openDuration = openSFX[idx].length;
+        }
         startTime = Time.time;
         // TODO animation stuff
         // fade out
         // get vector to player to calc door direction
-        Destroy(gameObject, openSFX.length);
+        Destroy(gameObject, openDuration);
     }
 }

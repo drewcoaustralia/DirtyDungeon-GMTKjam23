@@ -247,10 +247,18 @@ MonoBehaviour:
   maxItems: 3
   isFull: 0
   inventory: []
-  openSFX: {fileID: 8300000, guid: af6cbf895075c3b4481b35698a650a03, type: 3}
-  closeSFX: {fileID: 8300000, guid: 68ef5c748d399c247b3fc1f520c47d42, type: 3}
-  dumpSFX: {fileID: 8300000, guid: 64cea67f3c60a834fb2a80ad9d856761, type: 3}
-  denySFX: {fileID: 8300000, guid: d0937494b3aa8dc4da04d6cecad1218a, type: 3}
+  openSFX:
+  - {fileID: 8300000, guid: af6cbf895075c3b4481b35698a650a03, type: 3}
+  closeSFX:
+  - {fileID: 8300000, guid: 68ef5c748d399c247b3fc1f520c47d42, type: 3}
+  dumpSFX:
+  - {fileID: 8300000, guid: 64cea67f3c60a834fb2a80ad9d856761, type: 3}
+  fullSFX:
+  - {fileID: 8300000, guid: d0937494b3aa8dc4da04d6cecad1218a, type: 3}
+  openDuration: 0
+  closeDuration: 0
+  dumpDuration: 0
+  fullDuration: 0
 --- !u!54 &3566397123976209087
 Rigidbody:
   m_ObjectHideFlags: 0
