@@ -20,11 +20,12 @@ public class Pickuppable : MonoBehaviour, IInteractable
     private bool movingUp = true;
     public List<AudioClip> pickupSFX;
     private float pickupDuration;
-    public List<AudioClip> putdownSFX;
-    private float putdownDuration;
+    public List<AudioClip> collisionSFX;
+    private float collisionDuration;
     AudioSource audioSource;
     public float throwForce = 100f;
     private bool shatterable;
+    private bool notYetAnimated = true;
 
     void Awake()
     {
@@ -90,12 +91,6 @@ public class Pickuppable : MonoBehaviour, IInteractable
 
     public void PutDown()
     {
-        if (putdownSFX.Count != 0)
-        {
-            int idx = Random.Range (0, putdownSFX.Count);
-            audioSource.PlayOneShot(putdownSFX[idx]);
-            putdownDuration = putdownSFX[idx].length;
-        }
         pickedUp = false;
         gameObject.layer = LayerMask.NameToLayer("Environment");
         rb.isKinematic = false;
@@ -125,6 +120,7 @@ public class Pickuppable : MonoBehaviour, IInteractable
 
     void StartAnimation()
     {
+        notYetAnimated = false;
         rb.isKinematic = true; //for spinning
         startTime = Time.deltaTime;
         bottom = transform.position;
@@ -144,6 +140,15 @@ public class Pickuppable : MonoBehaviour, IInteractable
 
     void OnCollisionEnter(Collision collision)
     {
-        if (animated && collision.gameObject.tag == "floor" && !shatterable) StartAnimation();
+        if (collisionSFX.Count != 0 && !notYetAnimated && collision.gameObject.layer == LayerMask.NameToLayer("Environment"))
+        {
+            int idx = Random.Range (0, collisionSFX.Count);
+            audioSource.PlayOneShot(collisionSFX[idx]);
+            collisionDuration = collisionSFX[idx].length;
+        }
+        if (animated && collision.gameObject.tag == "floor" && notYetAnimated && !shatterable)
+        {
+            StartAnimation();
+        }
     }
 }

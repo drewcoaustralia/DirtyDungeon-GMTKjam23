@@ -6,6 +6,8 @@ public class InteractionController : MonoBehaviour
 {
     private IInteractable interactable;
     private bool pickupAhead;
+    private bool broomAhead;
+    private bool broomInHands;
     public bool emptyHanded { get; private set; }
     public Pickuppable objInHands { get; private set; }
     public Transform raycastSource;
@@ -33,9 +35,18 @@ public class InteractionController : MonoBehaviour
         // rayHit = Physics.Raycast(raycastSource.position, raycastSource.TransformDirection(Vector3.forward), out hit, rayDist, layerMask);
         interactable = rayHit ? hit.transform.gameObject.GetComponent<IInteractable>() : null;
         if (rayHit && hit.transform.gameObject.GetComponent<Pickuppable>() != null)
+        {
             pickupAhead = true;
+            if (hit.transform.gameObject.GetComponent<Broom>() != null)
+                broomAhead = true;
+            else
+                broomAhead = false;
+        }
         else
+        {
             pickupAhead = false;
+            broomAhead = false;
+        }
 
         if (objInHands == null) emptyHanded = true;
 
@@ -51,6 +62,11 @@ public class InteractionController : MonoBehaviour
                     {
                         anim.SetBool("isHolding", true);
                         anim.SetTrigger("pickup");
+                        if (broomAhead)
+                        {
+                            anim.SetBool("isSweeping", true);
+                            broomInHands = true;
+                        }
                     }
                     else
                     {
@@ -65,6 +81,8 @@ public class InteractionController : MonoBehaviour
                 {
                     // putting down object
                     anim.SetBool("isHolding", false);
+                    anim.SetBool("isSweeping", false);
+                    broomInHands = false;
                     anim.SetTrigger("putdown");
                     objInHands.Interact(gameObject);
                 }
