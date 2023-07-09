@@ -5,7 +5,7 @@ using UnityEngine;
 public class BasicController : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public float turnSpeed = 3f;
+    public float turnSpeed = 720f;
     private Rigidbody _rb;
     private Quaternion lastTargetRotation;
 
@@ -14,20 +14,20 @@ public class BasicController : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         Vector3 input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        if (input == Vector3.zero)
+        input.Normalize();
+        _rb.velocity = input * moveSpeed;
+        if (_rb.velocity == Vector3.zero)
         {
-            if (transform.rotation != lastTargetRotation) transform.rotation = Quaternion.Slerp(transform.rotation, lastTargetRotation, turnSpeed);
+            if (transform.rotation != lastTargetRotation) transform.rotation = Quaternion.RotateTowards(transform.rotation, lastTargetRotation, turnSpeed * Time.deltaTime);
         }
         else
         {
-            Vector3 direction = transform.position + input;
-            Quaternion targetRotation = Quaternion.LookRotation(input);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed);
+            Quaternion targetRotation = Quaternion.LookRotation(input, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
             lastTargetRotation = targetRotation;
         }
-        _rb.velocity = input * moveSpeed;
     }
 }
