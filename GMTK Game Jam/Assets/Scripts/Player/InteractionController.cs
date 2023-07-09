@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class InteractionController : MonoBehaviour
 {
-    public float rayDist = 2f;
     private IInteractable interactable;
     [SerializeField] private bool emptyHanded;
     private Pickuppable objInHands = null;
     public Transform raycastSource;
+    public float rayDist = 2f;
+    public Vector3 boxCastSize;
+    private bool rayHit = false;
 
     void Awake()
     {
@@ -23,8 +25,9 @@ public class InteractionController : MonoBehaviour
         float rayDistActual = rayDist;
         Color color = Color.white;
         int layerMask =~ LayerMask.GetMask("HeldObject");
-        bool ray = Physics.Raycast(raycastSource.position, raycastSource.TransformDirection(Vector3.forward), out hit, rayDist, layerMask);
-        interactable = ray ? hit.transform.gameObject.GetComponent<IInteractable>() : null;
+        rayHit = Physics.BoxCast(raycastSource.position, boxCastSize/2, raycastSource.TransformDirection(Vector3.forward), out hit, Quaternion.identity, rayDist, layerMask);
+        // rayHit = Physics.Raycast(raycastSource.position, raycastSource.TransformDirection(Vector3.forward), out hit, rayDist, layerMask);
+        interactable = rayHit ? hit.transform.gameObject.GetComponent<IInteractable>() : null;
 
         // do stuff
         if (Input.GetButtonDown("Fire1"))
@@ -42,7 +45,7 @@ public class InteractionController : MonoBehaviour
 
 
         // drawing
-        if (ray)
+        if (rayHit)
         {
             Debug.Log("Raycasting with: "+hit.transform.gameObject);
             rayDistActual = hit.distance;
@@ -51,6 +54,41 @@ public class InteractionController : MonoBehaviour
         }
         else Debug.Log("Raycasting with: NONE");
         Debug.DrawRay(raycastSource.position, raycastSource.TransformDirection(Vector3.forward) * rayDistActual, color);
+    }
+
+
+    void OnDrawGizmos()
+    {
+        DrawBoxLines(raycastSource.position, raycastSource.position+raycastSource.TransformDirection(Vector3.forward*rayDist), boxCastSize, true);
+    }
+
+    void DrawBoxLines(Vector3 p1, Vector3 p2, Vector3 extents, bool boxes = false)
+    {
+        Gizmos.color = rayHit ? Color.green : Color.white;
+        var length = (p2 - p1).magnitude;
+        var halfExtents = extents / 2;
+        var halfExtentsZ = transform.forward*halfExtents.z;
+        var halfExtentsY = transform.up*halfExtents.y;
+        var halfExtentsX = transform.right*halfExtents.x;
+        if (boxes)
+        {
+            var matrix = Gizmos.matrix;
+            Gizmos.matrix = Matrix4x4.TRS(p1, transform.rotation, Vector3.one);
+            Gizmos.DrawWireCube(Vector3.zero, extents);
+            Gizmos.matrix = Matrix4x4.TRS(p2, transform.rotation, Vector3.one);
+            Gizmos.DrawWireCube(Vector3.zero, extents);
+            Gizmos.matrix = matrix;
+        }
+        // draw connect lines 1
+        Gizmos.DrawLine(p1 - halfExtentsX - halfExtentsY - halfExtentsZ, p2 - halfExtentsX - halfExtentsY - halfExtentsZ);
+        Gizmos.DrawLine(p1 + halfExtentsX - halfExtentsY - halfExtentsZ, p2 + halfExtentsX - halfExtentsY - halfExtentsZ);
+        Gizmos.DrawLine(p1 - halfExtentsX + halfExtentsY - halfExtentsZ, p2 - halfExtentsX + halfExtentsY - halfExtentsZ);
+        Gizmos.DrawLine(p1 + halfExtentsX + halfExtentsY - halfExtentsZ, p2 + halfExtentsX + halfExtentsY - halfExtentsZ);
+        // draw connect lines 2
+        Gizmos.DrawLine(p1 - halfExtentsX - halfExtentsY + halfExtentsZ, p2 - halfExtentsX - halfExtentsY + halfExtentsZ);
+        Gizmos.DrawLine(p1 + halfExtentsX - halfExtentsY + halfExtentsZ, p2 + halfExtentsX - halfExtentsY + halfExtentsZ);
+        Gizmos.DrawLine(p1 - halfExtentsX + halfExtentsY + halfExtentsZ, p2 - halfExtentsX + halfExtentsY + halfExtentsZ);
+        Gizmos.DrawLine(p1 + halfExtentsX + halfExtentsY + halfExtentsZ, p2 + halfExtentsX + halfExtentsY + halfExtentsZ);
     }
 
     public bool LookingAtChest()
