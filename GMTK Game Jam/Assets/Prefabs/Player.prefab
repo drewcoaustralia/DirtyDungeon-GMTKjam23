@@ -386,7 +386,7 @@ GameObject:
   - component: {fileID: 1305931020549283502}
   - component: {fileID: 368506933087530788}
   - component: {fileID: 5598546601099099217}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Brush
   m_TagString: Untagged
   m_Icon: {fileID: 0}
