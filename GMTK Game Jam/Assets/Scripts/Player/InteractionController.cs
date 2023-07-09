@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class InteractionController : MonoBehaviour
 {
     private IInteractable interactable;
+    private bool pickupAhead;
+    private bool broomAhead;
+    private bool broomInHands;
     public bool emptyHanded { get; private set; }
     public Pickuppable objInHands { get; private set; }
     public Transform raycastSource;
@@ -12,6 +16,10 @@ public class InteractionController : MonoBehaviour
     public Vector3 boxCastSize;
     private bool rayHit = false;
     public Animator anim;
+    public GameObject broom;
+    public List<AudioClip> throwSFX;
+    AudioSource audioSource;
+    public BroomForce broomForce;
 
     void Awake()
     {
@@ -19,6 +27,8 @@ public class InteractionController : MonoBehaviour
         emptyHanded = true;
         interactable = null;
         if (raycastSource == null) raycastSource = transform;
+        pickupAhead = false;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -30,6 +40,19 @@ public class InteractionController : MonoBehaviour
         rayHit = Physics.BoxCast(raycastSource.position, boxCastSize/2, raycastSource.TransformDirection(Vector3.forward), out hit, Quaternion.identity, rayDist, layerMask);
         // rayHit = Physics.Raycast(raycastSource.position, raycastSource.TransformDirection(Vector3.forward), out hit, rayDist, layerMask);
         interactable = rayHit ? hit.transform.gameObject.GetComponent<IInteractable>() : null;
+        if (rayHit && hit.transform.gameObject.GetComponent<Pickuppable>() != null)
+        {
+            pickupAhead = true;
+            if (hit.transform.gameObject.GetComponent<Broom>() != null)
+                broomAhead = true;
+            else
+                broomAhead = false;
+        }
+        else
+        {
+            pickupAhead = false;
+            broomAhead = false;
+        }
 
         if (objInHands == null) emptyHanded = true;
 
@@ -40,30 +63,56 @@ public class InteractionController : MonoBehaviour
             {
                 if (interactable != null)
                 {
+                    //check if pickup
+                    if (pickupAhead)
+                    {
+                        anim.SetBool("isHolding", true);
+                        anim.SetTrigger("pickup");
+                        if (broomAhead)
+                        {
+                            anim.SetBool("isSweeping", true);
+                            broomInHands = true;
+                            broom.SetActive(true);
+                        }
+                    }
+                    else
+                    {
+                        anim.SetTrigger("interact");
+                    }
                     interactable.Interact(gameObject);
-                    anim.SetTrigger("Interacting");
                 }
             }
             else // object in hands
             {
                 if (interactable==null)
                 {
+                    // putting down object
+                    anim.SetBool("isHolding", false);
+                    anim.SetBool("isSweeping", false);
+                    broomInHands = false;
+                    broom.SetActive(false);
+                    anim.SetTrigger("putdown");
+                    if (throwSFX.Count != 0)
+                    {
+                        int idx = Random.Range (0, throwSFX.Count);
+                        audioSource.PlayOneShot(throwSFX[idx]);
+                    }
                     objInHands.Interact(gameObject);
-                    anim.SetTrigger("Interacting");
                 }
                 else if (interactable.UsableWithObj(objInHands.gameObject))
                 {
+                    anim.SetBool("isHolding", false);
+                    anim.SetTrigger("interact");
                     interactable.Interact(gameObject,objInHands.gameObject);
-                    anim.SetTrigger("Interacting");
                 }
             }
         }
-
 
         // drawing
         if (rayHit)
         {
             Debug.Log("Raycasting with: "+hit.transform.gameObject);
+            if (broomInHands) broomForce.ApplyForce(hit.transform.gameObject);
             rayDistActual = hit.distance;
             if (interactable != null) color = Color.green;
             else color = Color.red;

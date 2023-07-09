@@ -105,23 +105,183 @@ PrefabInstance:
     - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
         type: 3}
       propertyPath: openSFX.Array.size
-      value: 1
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
         type: 3}
       propertyPath: lockedSFX.Array.size
-      value: 1
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
         type: 3}
       propertyPath: 'openSFX.Array.data[0]'
       value: 
-      objectReference: {fileID: 8300000, guid: 19925e2804477614cb0202368f9ad96d, type: 3}
+      objectReference: {fileID: 8300000, guid: 7b2f03de03f22e04881982106fe83368, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'openSFX.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 7bd9f1f964aab024a8ddd0b68f6536e2, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'openSFX.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 173945d34e2766640ab97e722ab6834d, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'openSFX.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 53e353bca438fd048bb8e6fbe488bcf3, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'openSFX.Array.data[4]'
+      value: 
+      objectReference: {fileID: 8300000, guid: c009cc0e7592e134091f046d12b1718e, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'openSFX.Array.data[5]'
+      value: 
+      objectReference: {fileID: 8300000, guid: ffe93c99a12e94b41b12cb9d3b4ada5f, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'openSFX.Array.data[6]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 22d5dd94919894b45bc6c0cf8be8253e, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'openSFX.Array.data[7]'
+      value: 
+      objectReference: {fileID: 8300000, guid: f89883d63d4c30548961cfd41868e50e, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'openSFX.Array.data[8]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 3cfb2020876378b48bd11bd307e728ac, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'openSFX.Array.data[9]'
+      value: 
+      objectReference: {fileID: 8300000, guid: b4cceae81b4d60c4dbb1476325af4ea3, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'openSFX.Array.data[10]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 405ddf3988a443d47a07ee3b27bc2b11, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'openSFX.Array.data[11]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 405ddf3988a443d47a07ee3b27bc2b11, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'openSFX.Array.data[12]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 405ddf3988a443d47a07ee3b27bc2b11, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'openSFX.Array.data[13]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 405ddf3988a443d47a07ee3b27bc2b11, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'openSFX.Array.data[14]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 405ddf3988a443d47a07ee3b27bc2b11, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'openSFX.Array.data[15]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 405ddf3988a443d47a07ee3b27bc2b11, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'openSFX.Array.data[16]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 405ddf3988a443d47a07ee3b27bc2b11, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'openSFX.Array.data[17]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 405ddf3988a443d47a07ee3b27bc2b11, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'openSFX.Array.data[18]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 405ddf3988a443d47a07ee3b27bc2b11, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'openSFX.Array.data[19]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 405ddf3988a443d47a07ee3b27bc2b11, type: 3}
     - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
         type: 3}
       propertyPath: 'lockedSFX.Array.data[0]'
       value: 
-      objectReference: {fileID: 8300000, guid: d0937494b3aa8dc4da04d6cecad1218a, type: 3}
+      objectReference: {fileID: 8300000, guid: 7610ce02af976b14da823be276406751, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'lockedSFX.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: bff2911b49e8ca04683d0fb0917b240c, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'lockedSFX.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 43416c47eb5915b42b152a88454fa5a4, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'lockedSFX.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8300000, guid: bb6c3ae56be9f8049af3966938a61b71, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'lockedSFX.Array.data[4]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 7937346d5cfe87244889e96c160f7294, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'lockedSFX.Array.data[5]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 5415da16cbfadbc49911324d0cae92ee, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'lockedSFX.Array.data[6]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 288721b632e56f942a0cdcf95d134478, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'lockedSFX.Array.data[7]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d846a23b0e4415499b57b58a08810e8, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'lockedSFX.Array.data[8]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 6d7912135e4d8044bb85c5ac94777560, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'lockedSFX.Array.data[9]'
+      value: 
+      objectReference: {fileID: 8300000, guid: ec597b7099ea25843826bfd3b1b12964, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'lockedSFX.Array.data[10]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 6fbe1a430a1289c44af2d5fa0557fb65, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'lockedSFX.Array.data[11]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 4a380ca9f62fe814495205f784da10b0, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'lockedSFX.Array.data[12]'
+      value: 
+      objectReference: {fileID: 8300000, guid: b1d61ca013de4a14dbf1292c862854d3, type: 3}
+    - target: {fileID: 9072650956726400307, guid: d23e956d145476b4292d579074ede834,
+        type: 3}
+      propertyPath: 'lockedSFX.Array.data[13]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 6cf26f602c37c634882f477d1bdc0a6a, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
