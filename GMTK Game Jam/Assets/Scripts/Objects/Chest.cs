@@ -17,11 +17,20 @@ public class Chest : MonoBehaviour, IInteractable
     public AudioClip closeSFX;
     AudioSource audioSource;
 
+    [SerializeField] private MeshRenderer emptyChestModel;
+    [SerializeField] private MeshRenderer goldChestModel;
+
     void Awake()
     {
         col = GetComponent<Collider>();
         targetRotation = Quaternion.Euler(0, transform.localEulerAngles.y, transform.localEulerAngles.z);
         audioSource = GetComponent<AudioSource>();
+    }
+
+    void Start() {
+        isMoving = true;
+        startTime = Time.time;
+        Open();
     }
 
     public void Interact(GameObject source)
@@ -62,7 +71,13 @@ public class Chest : MonoBehaviour, IInteractable
 
     public void Add(GameObject obj)
     {
-        Debug.Log("adding");
         obj.GetComponent<Pickuppable>().PutInChest(gameObject);
+        Destroy(obj);
+        emptyChestModel.enabled = false;
+        goldChestModel.enabled = true;
+
+        if (TryGetComponent(out TaskInstance taskInstance)) {
+            taskInstance.Complete();
+        }
     }
 }
