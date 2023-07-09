@@ -89,7 +89,8 @@ MonoBehaviour:
   floatDur: 1.25
   heightChange: 0.25
   pickupSFX: {fileID: 8300000, guid: 36db2ea90964b1546afea9a186415eaa, type: 3}
-  putdownSFX: {fileID: 0}
+  putdownSFX: {fileID: 8300000, guid: 0191ab9eef9b7af45b9f398731def771, type: 3}
+  throwForce: 300
 --- !u!54 &5373376622659281975
 Rigidbody:
   m_ObjectHideFlags: 0

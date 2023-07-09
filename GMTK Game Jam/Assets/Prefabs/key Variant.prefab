@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5690c23dc30ffd340969f16d82883670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorColor: cyan
+  keyColor: 
 --- !u!114 &6870043063136136942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,7 +136,8 @@ MonoBehaviour:
   floatDur: 1.25
   heightChange: 0.25
   pickupSFX: {fileID: 8300000, guid: 36db2ea90964b1546afea9a186415eaa, type: 3}
-  putdownSFX: {fileID: 0}
+  putdownSFX: {fileID: 8300000, guid: 0191ab9eef9b7af45b9f398731def771, type: 3}
+  throwForce: 300
 --- !u!54 &9055921434617194305
 Rigidbody:
   m_ObjectHideFlags: 0

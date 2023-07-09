@@ -21,6 +21,7 @@ public class Pickuppable : MonoBehaviour, IInteractable
     public AudioClip pickupSFX;
     public AudioClip putdownSFX;
     AudioSource audioSource;
+    public float throwForce = 100f;
 
     void Awake()
     {
@@ -89,6 +90,7 @@ public class Pickuppable : MonoBehaviour, IInteractable
         col.enabled = true;
         src.GetComponent<InteractionController>().Hold(null);
         transform.SetParent(null, true);
+        rb.AddForce((transform.up+transform.forward) * throwForce);
     }
 
     public void PutInChest(GameObject chest)
