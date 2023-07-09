@@ -1,19 +1,9 @@
 fileFormatVersion: 2
-guid: 7746346f15996e7439fd5b95c66f993d
+guid: 7af2f1c2fea81a448b604e66e2a076cc
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: shatterInteriorS9
-    second: {fileID: 2100000, guid: 8a4c3bec8374f86419907d6634101bc2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: texture1
-    second: {fileID: 2100000, guid: 8a4c3bec8374f86419907d6634101bc2, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
