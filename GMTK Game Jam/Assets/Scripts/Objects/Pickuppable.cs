@@ -21,12 +21,20 @@ public class Pickuppable : MonoBehaviour, IInteractable
     public AudioClip pickupSFX;
     public AudioClip putdownSFX;
     AudioSource audioSource;
+    public float throwForce = 100f;
+    private bool shatterable;
 
     void Awake()
     {
         col = GetComponent<Collider>();
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+        if (gameObject.GetComponent<Shatter>() != null) gameObject.GetComponent<Shatter>().enabled=false;
+    }
+
+    public bool UsableWithObj(GameObject obj)
+    {
+        return false;
     }
 
     void Update()
@@ -44,7 +52,7 @@ public class Pickuppable : MonoBehaviour, IInteractable
         }
     }
 
-    public void Interact(GameObject source)
+    public void Interact(GameObject source, GameObject obj=null)
     {
         src = source;
         if (!pickedUp) Pickup();
@@ -57,7 +65,7 @@ public class Pickuppable : MonoBehaviour, IInteractable
         audioSource.PlayOneShot(pickupSFX);
         pickedUp = true;
         gameObject.layer = LayerMask.NameToLayer("HeldObject");
-        // rb.isKinematic = true;
+        rb.isKinematic = true;
         rb.useGravity = false;
         rb.constraints = RigidbodyConstraints.FreezeAll;
         col.enabled = false;
@@ -75,15 +83,16 @@ public class Pickuppable : MonoBehaviour, IInteractable
 
     public void PutDown()
     {
-        // audioSource.PlayOneShot(putdownSFX);
+        audioSource.PlayOneShot(putdownSFX);
         pickedUp = false;
         gameObject.layer = LayerMask.NameToLayer("Environment");
-        // rb.isKinematic = false;
+        rb.isKinematic = false;
         rb.useGravity = true;
         rb.constraints = RigidbodyConstraints.None;
         col.enabled = true;
         src.GetComponent<InteractionController>().Hold(null);
         transform.SetParent(null, true);
+        rb.AddForce((transform.up+transform.forward) * throwForce); // ADD RANDOM ROTATION
     }
 
     public void PutInChest(GameObject chest)
@@ -98,6 +107,8 @@ public class Pickuppable : MonoBehaviour, IInteractable
         // rb.useGravity = true;
         // rb.constraints = RigidbodyConstraints.None;
         col.enabled = false;
+        src.GetComponent<InteractionController>().Hold(null);
+        gameObject.SetActive(false);
     }
 
     void StartAnimation()
@@ -106,6 +117,11 @@ public class Pickuppable : MonoBehaviour, IInteractable
         startTime = Time.deltaTime;
         bottom = transform.position;
         top = bottom + new Vector3 (0, heightChange, 0);
+        if (gameObject.GetComponent<Shatter>() != null)
+        {
+            shatterable = true;
+            gameObject.GetComponent<Shatter>().enabled=true;
+        }
     }
 
     void StopAnimation()
@@ -116,6 +132,6 @@ public class Pickuppable : MonoBehaviour, IInteractable
 
     void OnCollisionEnter(Collision collision)
     {
-        if (animated && collision.gameObject.tag == "floor") StartAnimation();
+        if (animated && collision.gameObject.tag == "floor" && !shatterable) StartAnimation();
     }
 }

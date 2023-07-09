@@ -24,11 +24,9 @@ public class CharacterMovement : MonoBehaviour {
 
     jumpPressed |= Input.GetButtonDown("Jump") && isGrounded;
 
-    if (rb.velocity.magnitude > 1f) {
-      var lookRotation = Vector3.Scale(rb.velocity, new Vector3(1, 0, 1));
-      if (lookRotation != Vector3.zero) {
-        visualBody.rotation = Quaternion.LookRotation(lookRotation);
-      }
+    var lookRotation = Vector3.Scale(rb.velocity, new Vector3(1, 0, 1));
+    if (lookRotation != Vector3.zero) {
+      visualBody.rotation = Quaternion.LookRotation(lookRotation);
     }
   }
 

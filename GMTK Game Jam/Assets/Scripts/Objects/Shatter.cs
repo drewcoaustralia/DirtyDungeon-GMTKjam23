@@ -18,6 +18,7 @@ public class Shatter : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        if (!this.enabled) return;
         if (collision.gameObject.tag == "floor") ShatterThis();
     }
 
