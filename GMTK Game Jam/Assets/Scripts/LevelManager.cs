@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour {
     [SerializeField] private Text timerText;
-    [SerializeField] private float timeLimit = 120f;
-    private float timeRemaining = 30f;
+    [SerializeField] private float timeLimit = 150f;
+    private float timeRemaining = 150f;
     [SerializeField] private string comicSceneName;
 
     private bool comicSceneLoadStarted = false;
@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour {
 
     void Start() {
         // timeRemaining = GetComponent<AudioSource>().clip.length;
+        timeRemaining = timeLimit;
         hourglass.Init(timeRemaining);
     }
 
@@ -22,11 +23,14 @@ public class LevelManager : MonoBehaviour {
         timeRemaining = Mathf.Max(timeRemaining - Time.deltaTime, 0);
 
         timerText.text = $"{timeRemaining.ToString("00.00")}s";
-
-        if (timeRemaining <= 0 && !comicSceneLoadStarted) {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(comicSceneName);
-            comicSceneLoadStarted = true;
+        if (timeRemaining <= 0) {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
+
+        // if (timeRemaining <= 0 && !comicSceneLoadStarted) {
+        //     UnityEngine.SceneManagement.SceneManager.LoadScene(comicSceneName);
+        //     comicSceneLoadStarted = true;
+        // }
     }
 
 }
