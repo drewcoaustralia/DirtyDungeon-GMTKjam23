@@ -6,14 +6,20 @@ using UnityEngine;
 public class Door : MonoBehaviour, IInteractable
 {
     public string keyColor;
+    public Color hueShift;
     public AudioClip openSFX;
     public AudioClip lockedSFX;
     AudioSource audioSource;
     private bool startedOpening = false;
+    public GameObject leftDoor;
+    public GameObject rightDoor;
+    public float openAngle;
+    private float startTime;
 
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        // TODO change hue
     }
 
     public bool UsableWithObj(GameObject obj)
@@ -40,11 +46,25 @@ public class Door : MonoBehaviour, IInteractable
         }
     }
 
+    void Update()
+    {
+        if (startedOpening)
+        {
+            float currentAngle = openAngle * ((Time.time - startTime) / openSFX.length);
+            currentAngle = Mathf.Clamp(currentAngle, 0, openAngle);
+            leftDoor.transform.localEulerAngles = new Vector3(0, -currentAngle, 0);
+            rightDoor.transform.localEulerAngles = new Vector3(0, currentAngle, 0);
+        }
+    }
+
     void Open()
     {
         startedOpening = true;
         audioSource.PlayOneShot(openSFX);
-        //animation stuff
+        startTime = Time.time;
+        // TODO animation stuff
+        // fade out
+        // get vector to player to calc door direction
         Destroy(gameObject, openSFX.length);
     }
 }

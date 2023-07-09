@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5ba11b71b28093409c9cc03ae062191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shattered: {fileID: 3783234911058985119, guid: ec7acdc030ac85b41b538a09ed6e5c62,
+  shattered: {fileID: 4956734484627237620, guid: 446c17ed927d82448ad10550337046b5,
     type: 3}
   force: 300
   minUpwards: 0.6
