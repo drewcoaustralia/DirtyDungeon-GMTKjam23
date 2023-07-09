@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Broom : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Renderer rend;
+
+    public void Pickup()
     {
-        
+        rend.enabled = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PutDown()
     {
-        
+        rend.enabled = true;
     }
 }

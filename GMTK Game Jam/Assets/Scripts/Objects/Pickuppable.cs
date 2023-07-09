@@ -81,6 +81,7 @@ public class Pickuppable : MonoBehaviour, IInteractable
         transform.SetParent(src.transform, false);
         transform.localPosition = Vector3.forward * holdDist;
         transform.rotation = src.transform.rotation;
+        if (gameObject.GetComponent<Broom>() != null) gameObject.GetComponent<Broom>().Pickup();
     }
 
     void TryPutDown()
@@ -91,6 +92,7 @@ public class Pickuppable : MonoBehaviour, IInteractable
 
     public void PutDown()
     {
+        if (gameObject.GetComponent<Broom>() != null) gameObject.GetComponent<Broom>().PutDown();
         pickedUp = false;
         gameObject.layer = LayerMask.NameToLayer("Environment");
         rb.isKinematic = false;
