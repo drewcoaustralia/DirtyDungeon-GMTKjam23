@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class InteractionController : MonoBehaviour
 {
     private IInteractable interactable;
@@ -16,6 +17,8 @@ public class InteractionController : MonoBehaviour
     private bool rayHit = false;
     public Animator anim;
     public GameObject broom;
+    public List<AudioClip> throwSFX;
+    AudioSource audioSource;
 
     void Awake()
     {
@@ -24,6 +27,7 @@ public class InteractionController : MonoBehaviour
         interactable = null;
         if (raycastSource == null) raycastSource = transform;
         pickupAhead = false;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -87,6 +91,11 @@ public class InteractionController : MonoBehaviour
                     broomInHands = false;
                     broom.SetActive(false);
                     anim.SetTrigger("putdown");
+                    if (throwSFX.Count != 0)
+                    {
+                        int idx = Random.Range (0, throwSFX.Count);
+                        audioSource.PlayOneShot(throwSFX[idx]);
+                    }
                     objInHands.Interact(gameObject);
                 }
                 else if (interactable.UsableWithObj(objInHands.gameObject))
