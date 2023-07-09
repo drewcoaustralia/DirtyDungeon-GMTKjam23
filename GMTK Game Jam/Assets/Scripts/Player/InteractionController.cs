@@ -5,6 +5,7 @@ using UnityEngine;
 public class InteractionController : MonoBehaviour
 {
     private IInteractable interactable;
+    private bool pickupAhead;
     public bool emptyHanded { get; private set; }
     public Pickuppable objInHands { get; private set; }
     public Transform raycastSource;
@@ -19,6 +20,7 @@ public class InteractionController : MonoBehaviour
         emptyHanded = true;
         interactable = null;
         if (raycastSource == null) raycastSource = transform;
+        pickupAhead = false;
     }
 
     void Update()
@@ -30,6 +32,10 @@ public class InteractionController : MonoBehaviour
         rayHit = Physics.BoxCast(raycastSource.position, boxCastSize/2, raycastSource.TransformDirection(Vector3.forward), out hit, Quaternion.identity, rayDist, layerMask);
         // rayHit = Physics.Raycast(raycastSource.position, raycastSource.TransformDirection(Vector3.forward), out hit, rayDist, layerMask);
         interactable = rayHit ? hit.transform.gameObject.GetComponent<IInteractable>() : null;
+        if (rayHit && hit.transform.gameObject.GetComponent<Pickuppable>() != null)
+            pickupAhead = true;
+        else
+            pickupAhead = false;
 
         if (objInHands == null) emptyHanded = true;
 
@@ -40,25 +46,36 @@ public class InteractionController : MonoBehaviour
             {
                 if (interactable != null)
                 {
+                    //check if pickup
+                    if (pickupAhead)
+                    {
+                        anim.SetBool("isHolding", true);
+                        anim.SetTrigger("pickup");
+                    }
+                    else
+                    {
+                        anim.SetTrigger("interact");
+                    }
                     interactable.Interact(gameObject);
-                    anim.SetTrigger("Interacting");
                 }
             }
             else // object in hands
             {
                 if (interactable==null)
                 {
+                    // putting down object
+                    anim.SetBool("isHolding", false);
+                    anim.SetTrigger("putdown");
                     objInHands.Interact(gameObject);
-                    anim.SetTrigger("Interacting");
                 }
                 else if (interactable.UsableWithObj(objInHands.gameObject))
                 {
+                    anim.SetBool("isHolding", false);
+                    anim.SetTrigger("interact");
                     interactable.Interact(gameObject,objInHands.gameObject);
-                    anim.SetTrigger("Interacting");
                 }
             }
         }
-
 
         // drawing
         if (rayHit)
