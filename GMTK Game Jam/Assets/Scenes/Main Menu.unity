@@ -1709,11 +1709,18 @@ MonoBehaviour:
   minX: -4.02
   maxX: 4.22
   minY: 4
-  maxY: 5
+  maxY: 6
   minZ: -2.12
   maxZ: -6.11
-  minInterval: 0.75
-  maxInterval: 2.5
+  minInterval: 0.5
+  maxInterval: 1.75
+  times:
+  - 6.5
+  - 8.5
+  - 9.5
+  - 10
+  - 11.75
+  - 14.5
   mess:
   - {fileID: 8353355087199225666, guid: af74745958eff3c458976f0de201f5a9, type: 3}
   - {fileID: 5709551422936366787, guid: 7deb57f9346e39f4aa2dc4b9c0fd8aba, type: 3}
@@ -1727,6 +1734,7 @@ MonoBehaviour:
   - {fileID: 8062328032549416557, guid: 4896acd1bf9e020418d36996c3a23d8b, type: 3}
   - {fileID: 5526824077783182068, guid: f754f0d5541061c4e9b860aae5a2c2c2, type: 3}
   - {fileID: 2699026299441266116, guid: 78d652040a0d8294d977c8419e7e75ef, type: 3}
+  messChaos:
   - {fileID: 3892245758785321398, guid: 05cb586d184c7db46b8c9b1699b4c86a, type: 3}
   - {fileID: 5747058349761404699, guid: 04b4af9abe5a3f445a6acdb3e7461bf8, type: 3}
   - {fileID: 4445455055505237064, guid: d7db02c54a105d64c8a73bf346cf41e6, type: 3}

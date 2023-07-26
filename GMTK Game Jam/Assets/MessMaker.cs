@@ -16,24 +16,53 @@ public class MessMaker : MonoBehaviour
     private float currentInterval;
     private float lastThrown = 0f;
 
+    public List<float> times;
+    private bool chaos = false;
+
     public List<GameObject> mess;
+    public List<GameObject> messChaos;
 
     void Awake()
     {
         currentInterval = Random.Range(minInterval, maxInterval);
     }
 
+    Vector3 RandomPosition()
+    {
+        return new Vector3(Random.Range(minX,maxX), Random.Range(minY,maxY), Random.Range(minZ,maxZ));
+    }
+
+    void DropMess(Vector3 position)
+    {
+        if (mess.Count != 0)
+        {
+            int idx = Random.Range (0, mess.Count);
+            GameObject.Instantiate(mess[idx], position, Random.rotation);
+        }
+    }
+
     void Update()
     {
-        if (Time.time - lastThrown >= currentInterval)
+        if (!chaos && times.Count <= 0)
         {
-            if (mess.Count != 0)
+            chaos = true;
+            foreach (GameObject obj in messChaos)
             {
-                int idx = Random.Range (0, mess.Count);
-                Vector3 randPos = new Vector3(Random.Range(minX,maxX), Random.Range(minY,maxY), Random.Range(minZ,maxZ));
-                GameObject.Instantiate(mess[idx], randPos, Random.rotation, transform);
-                lastThrown = Time.time;
+                mess.Add(obj);
             }
+        }
+
+        if (!chaos && Time.time >= times[0])
+        {
+            DropMess(new Vector3(Random.Range(-3,1),2,-5));
+            times.RemoveAt(0);
+        }
+
+        if (chaos && Time.time - lastThrown >= currentInterval)
+        {
+            DropMess(RandomPosition());
+            lastThrown = Time.time;
+            currentInterval = Random.Range(minInterval, maxInterval);
         }
     }
 
