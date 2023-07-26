@@ -7532,6 +7532,146 @@ PrefabInstance:
       propertyPath: anim
       value: 
       objectReference: {fileID: 165342442}
+    - target: {fileID: -2419796224341214237, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: stepInterval
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: -2419796224341214237, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: stepIntervalFastest
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: -2419796224341214237, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: footstepSFX.Array.size
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: -2419796224341214237, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'footstepSFX.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: ec9ef6211f27ee74799aae7c8ab512e2, type: 3}
+    - target: {fileID: -2419796224341214237, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'footstepSFX.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 61bacb8bc7568c14e873cb9173e04876, type: 3}
+    - target: {fileID: -2419796224341214237, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'footstepSFX.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 808f2e0956096e848b067db0a922df31, type: 3}
+    - target: {fileID: -2419796224341214237, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'footstepSFX.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8300000, guid: bb4dcffb6f5285d4b905e9b00e8807bc, type: 3}
+    - target: {fileID: -2419796224341214237, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'footstepSFX.Array.data[4]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 5a3f48c63af26f747a58952e289debc6, type: 3}
+    - target: {fileID: -2419796224341214237, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'footstepSFX.Array.data[5]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 1fdfa2ccaade13d44b8bab68fa14c72a, type: 3}
+    - target: {fileID: -2419796224341214237, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'footstepSFX.Array.data[6]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 41e3a6ca9ca26a14fb3dc6d95b2a6da2, type: 3}
+    - target: {fileID: -2419796224341214237, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'footstepSFX.Array.data[7]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 1c2068a7388a9e44abb52fcc4b905fad, type: 3}
+    - target: {fileID: -2419796224341214237, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'footstepSFX.Array.data[8]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 89afaf85b7b0ffc45a8a78298944757d, type: 3}
+    - target: {fileID: -2419796224341214237, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'footstepSFX.Array.data[9]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 00489599611df034d9d2890c720cbe46, type: 3}
+    - target: {fileID: -2419796224341214237, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'footstepSFX.Array.data[10]'
+      value: 
+      objectReference: {fileID: 8300000, guid: b4ecc1e6ace4aef4098e4938c6ce283c, type: 3}
+    - target: {fileID: -2419796224341214237, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'footstepSFX.Array.data[11]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 3468a3b9650ff3c4da16fd8e978a0e1f, type: 3}
+    - target: {fileID: -2419796224341214237, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'footstepSFX.Array.data[12]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 883f7f18d187104459b6e170aca8c354, type: 3}
+    - target: {fileID: -2419796224341214237, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'footstepSFX.Array.data[13]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 27707d9c725b864439905f7d7211780c, type: 3}
+    - target: {fileID: -2419796224341214237, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'footstepSFX.Array.data[14]'
+      value: 
+      objectReference: {fileID: 8300000, guid: bc88cb0fee6c508499b9637af5da5574, type: 3}
+    - target: {fileID: -2419796224341214237, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'footstepSFX.Array.data[15]'
+      value: 
+      objectReference: {fileID: 8300000, guid: debe65ed0f31da444bb4926e4d61f025, type: 3}
+    - target: {fileID: -2419796224341214237, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'footstepSFX.Array.data[16]'
+      value: 
+      objectReference: {fileID: 8300000, guid: d9f56f46a7d2c1b458248241a8a0aa1d, type: 3}
+    - target: {fileID: -2419796224341214237, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'footstepSFX.Array.data[17]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 78ed7629f33dffc48bb95e960da891d0, type: 3}
+    - target: {fileID: -2419796224341214237, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'footstepSFX.Array.data[18]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d11c64521d08a649aabd6efb4dddcd1, type: 3}
+    - target: {fileID: -2419796224341214237, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'footstepSFX.Array.data[19]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 467d648b33f29c5468a21652ff1f5084, type: 3}
+    - target: {fileID: -2419796224341214237, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'footstepSFX.Array.data[20]'
+      value: 
+      objectReference: {fileID: 8300000, guid: e9881d0a7a05a4b43a0698cf02afba70, type: 3}
+    - target: {fileID: -2419796224341214237, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'footstepSFX.Array.data[21]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 66dbac738b7e7bf42850334cf2ee7169, type: 3}
+    - target: {fileID: -2419796224341214237, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'footstepSFX.Array.data[22]'
+      value: 
+      objectReference: {fileID: 8300000, guid: d8741393f0ed6314396b19c2aac37ef1, type: 3}
+    - target: {fileID: -2419796224341214237, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'footstepSFX.Array.data[23]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 11d1133d5486a2746b2e4e0ef4a3b72f, type: 3}
+    - target: {fileID: -2419796224341214237, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'footstepSFX.Array.data[24]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 83a175355f3e30140be4a5d741faf3d2, type: 3}
     - target: {fileID: 44858196979179510, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
         type: 3}
       propertyPath: m_Layer
@@ -7777,6 +7917,81 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 4566953426415231363, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: broomSoundInterval
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566953426415231363, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: broomSFX.Array.size
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566953426415231363, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'broomSFX.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 4920736b4c4bc61448bf65040875e5aa, type: 3}
+    - target: {fileID: 4566953426415231363, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'broomSFX.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: c44dcffb7e26d8644ab71fd67b82e294, type: 3}
+    - target: {fileID: 4566953426415231363, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'broomSFX.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 9657c1a53a71e884e963e4f615dfe6ea, type: 3}
+    - target: {fileID: 4566953426415231363, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'broomSFX.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8300000, guid: f38edc4d111ff014ab158fbe2bedb15d, type: 3}
+    - target: {fileID: 4566953426415231363, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'broomSFX.Array.data[4]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 0e5492ffa7a18b143a1fe131a5b2bc75, type: 3}
+    - target: {fileID: 4566953426415231363, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'broomSFX.Array.data[5]'
+      value: 
+      objectReference: {fileID: 8300000, guid: eb46e3c801901794a988a5d1fdde70ac, type: 3}
+    - target: {fileID: 4566953426415231363, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'broomSFX.Array.data[6]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 69e3f87a9408ce94c81dbc8ebd26dd39, type: 3}
+    - target: {fileID: 4566953426415231363, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'broomSFX.Array.data[7]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 44e7bc94720f4b14a87ba2b9853a0f7e, type: 3}
+    - target: {fileID: 4566953426415231363, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'broomSFX.Array.data[8]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 102ae95aafadb36449a57d49d2ab0ba7, type: 3}
+    - target: {fileID: 4566953426415231363, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'broomSFX.Array.data[9]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 0afcfd075ef90764c8e714e810cd9429, type: 3}
+    - target: {fileID: 4566953426415231363, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'broomSFX.Array.data[10]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 6ce1b9185a394a74a8941cbfa8ab416f, type: 3}
+    - target: {fileID: 4566953426415231363, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'broomSFX.Array.data[11]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 2daee55c7aacf014a90860db242bfeff, type: 3}
+    - target: {fileID: 4566953426415231363, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
+        type: 3}
+      propertyPath: 'broomSFX.Array.data[12]'
+      value: 
+      objectReference: {fileID: 8300000, guid: e696c8a5d003f75448b3ae14c9ed9c1e, type: 3}
     - target: {fileID: 4899844570255983592, guid: 0c8e79daa59a6b1498e2a8f9ee955924,
         type: 3}
       propertyPath: m_Layer
@@ -8073,13 +8288,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7bca53bc26ad013458d2f4b68fc59825, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

@@ -20,6 +20,9 @@ public class InteractionController : MonoBehaviour
     public List<AudioClip> throwSFX;
     AudioSource audioSource;
     public BroomForce broomForce;
+    public List<AudioClip> broomSFX;
+    public float broomSoundInterval = 0.3f;
+    private float broomSoundTriggered = 0f;
 
     void Awake()
     {
@@ -56,6 +59,16 @@ public class InteractionController : MonoBehaviour
 
         if (objInHands == null) emptyHanded = true;
 
+        if (broomInHands && Time.time - broomSoundTriggered >= broomSoundInterval)
+        {
+            if (broomSFX.Count != 0)
+            {
+                int idx = Random.Range (0, broomSFX.Count);
+                audioSource.PlayOneShot(broomSFX[idx]);
+                broomSoundTriggered = Time.time;
+            }
+        }
+
         // do stuff
         if (Input.GetButtonDown("Fire1"))
         {
@@ -73,6 +86,7 @@ public class InteractionController : MonoBehaviour
                             anim.SetBool("isSweeping", true);
                             broomInHands = true;
                             broom.SetActive(true);
+                            broomSoundTriggered = Time.time;
                         }
                     }
                     else
