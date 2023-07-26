@@ -27,7 +27,7 @@ public class Shatter : MonoBehaviour
         GameObject shatt = Instantiate(shattered, transform.position+(Vector3.up/2), transform.rotation);
         AudioSource src = shatt.AddComponent<AudioSource>();
         src.clip = shatterSFX[Random.Range (0, shatterSFX.Count)];
-        src.PlayOneShot(src.clip);
+        src.PlayOneShot(src.clip, .6f);
 
         foreach (Transform child in shatt.transform)
         {

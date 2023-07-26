@@ -9,6 +9,10 @@ public class MainMenuLogic : MonoBehaviour {
         UnityEngine.SceneManagement.SceneManager.LoadScene(gameSceneName);
     }
 
+    public void HandleOptionsButton() {
+        Debug.Log("Options");
+    }
+
     public void HandleQuitButton() {
         Application.Quit();
     }
