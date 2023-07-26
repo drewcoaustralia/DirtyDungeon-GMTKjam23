@@ -5,64 +5,69 @@ using UnityEngine.UI;
 
 public class CheckListManager : MonoBehaviour
 {
-    public GridLayoutGroup CheckListContainer;
-    public GameObject TaskDescriptionPrefab;
+    public RectTransform money;
+    public float moneyMinSize;
+    public float moneyMaxSize;
+    public float moneySpeed;
+    public bool moneyIncreasing = true;
+    public RectTransform broom;
+    public float broomMinRot;
+    public float broomMaxRot;
+    public float broomSpeed;
+    public bool broomIncreasing = true;
+    public Slider moneySlider;
+    public Slider broomSlider;
 
-    public List<TaskInstance> activeTasks = new List<TaskInstance>();
-    public List<TaskInstance> completedTasks = new List<TaskInstance>();
+    private int coinSlots = 0;
+    private int coinsDone = 0;
+    private int trash = 0;
+    private int trashDone = 0;
 
-    public void RegisterTask(TaskInstance task) {
-        activeTasks.Add(task);
+    public void AddCoinSlot(int amount = 1)
+    {
+        coinSlots+= amount;
         UpdateUI();
     }
 
-    public void CompleteTask(TaskInstance task) {
-        activeTasks.Remove(task);
-        completedTasks.Add(task);
+    public void AddCoinDone(int amount = 1)
+    {
+        coinsDone+= amount;
         UpdateUI();
     }
 
-    private void UpdateUI() {
-        foreach (Transform child in CheckListContainer.transform) {
-            Destroy(child.gameObject);
-        }
+    public void AddTrash(int amount = 1)
+    {
+        trash+= amount;
+        UpdateUI();
+    }
 
-        int chests = 0;
-        int trash = 0;
+    public void AddTrashDone(int amount = 1)
+    {
+        trashDone+= amount;
+        UpdateUI();
+    }
 
-        foreach (var item in activeTasks) {
-            if (item.kind == TaskKind.FillChest) chests++;
-            if (item.kind == TaskKind.Trash) trash++;
-        }
+    private void UpdateUI()
+    {
+        if (coinSlots == 0) moneySlider.value = 0;
+        else moneySlider.value = (float)((float)coinsDone / (float)coinSlots);
+        if (trash == 0) broomSlider.value = 0;
+        else broomSlider.value = (float)((float)trashDone / (float)trash);
+    }
 
-        if (chests > 0) {
-            var taskDescription = Instantiate(TaskDescriptionPrefab, CheckListContainer.transform);
-            taskDescription.GetComponent<Text>().text = $"TODO  Fill {chests} chests";
-            taskDescription.transform.SetParent(CheckListContainer.gameObject.transform);
-        }
-        if (trash > 0) {
-            var taskDescription = Instantiate(TaskDescriptionPrefab, CheckListContainer.transform);
-            taskDescription.GetComponent<Text>().text = $"TODO  Clean {trash} trash";
-            taskDescription.transform.SetParent(CheckListContainer.gameObject.transform);
-        }
+    void Update()
+    {
+        Vector3 moneyChange = new Vector3(moneySpeed * Time.deltaTime, moneySpeed * Time.deltaTime, 0);
+        if (!moneyIncreasing) moneyChange *= -1f;
+        money.localScale += moneyChange;
+        if (money.localScale.x >= moneyMaxSize) moneyIncreasing = false;        
+        if (money.localScale.x <= moneyMinSize) moneyIncreasing = true;        
 
-        chests = 0;
-        trash = 0;
-
-        foreach (var item in completedTasks) {
-            if (item.kind == TaskKind.FillChest) chests++;
-            if (item.kind == TaskKind.Trash) trash++;
-        }
-
-        if (chests > 0) {
-            var taskDescription = Instantiate(TaskDescriptionPrefab, CheckListContainer.transform);
-            taskDescription.GetComponent<Text>().text = $"DONE  Fill {chests} chests";
-            taskDescription.transform.SetParent(CheckListContainer.gameObject.transform);
-        }
-        if (trash > 0) {
-            var taskDescription = Instantiate(TaskDescriptionPrefab, CheckListContainer.transform);
-            taskDescription.GetComponent<Text>().text = $"DONE  Clean {trash} trash";
-            taskDescription.transform.SetParent(CheckListContainer.gameObject.transform);
-        }
+        Vector3 broomChange = new Vector3(0, 0, broomSpeed * Time.deltaTime);
+        if (!broomIncreasing) broomChange *= -1f;
+        broom.localEulerAngles += broomChange;
+        if (broom.localEulerAngles.z >= broomMaxRot) broomIncreasing = false;        
+        // if (broom.localEulerAngles.z <= broomMinRot) broomIncreasing = true;        
+        if (broom.localEulerAngles.z >= 300) broomIncreasing = true;        
     }
 }

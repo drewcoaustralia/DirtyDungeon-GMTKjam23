@@ -6,7 +6,7 @@ using UnityEngine;
 public class Chest : MonoBehaviour, IInteractable
 {
     public bool isOpen = false;
-    private bool isMoving = false;
+    [SerializeField]private bool isMoving = false;
     public float openSpeed = 0.5f;
     public float openAngle = -47.555f;
     [SerializeField] private GameObject top;
@@ -15,6 +15,7 @@ public class Chest : MonoBehaviour, IInteractable
     [Min(1)]public int maxItems;
     public bool isFull;
     public List<GameObject> inventory;
+    private Quaternion sourceRotation;
     private Quaternion targetRotation;
     private float startTime = 0f;
     private Collider col;
@@ -28,14 +29,26 @@ public class Chest : MonoBehaviour, IInteractable
     public float fullDuration;
     AudioSource audioSource;
 
+    private CheckListManager checklistManager;
+
+    // float FixRotation(float angle)
+    // {
+    //     if (angle < 0) return angle + 360;
+    //     return angle;
+    // }
+
     void Awake()
     {
         col = GetComponent<Collider>();
-        targetRotation = Quaternion.Euler(0, transform.localEulerAngles.y, transform.localEulerAngles.z);
+        // transform.localEulerAngles = new Vector3(FixRotation(transform.localEulerAngles.x), FixRotation(transform.localEulerAngles.y), FixRotation(transform.localEulerAngles.z));
+        sourceRotation = Quaternion.Euler(0, 0, 0);
+        targetRotation = Quaternion.Euler(0, 0, 0);
         audioSource = GetComponent<AudioSource>();
         isFull = inventory.Count >= maxItems;
         empty.SetActive(!isFull);
         full.SetActive(isFull);
+        checklistManager = GameObject.Find("Checklist Manager").GetComponent<CheckListManager>();
+        checklistManager.AddCoinSlot(maxItems);
     }
 
     public bool UsableWithObj(GameObject obj)
@@ -60,8 +73,8 @@ public class Chest : MonoBehaviour, IInteractable
     {
         if (isMoving)
         {
-            top.transform.rotation = Quaternion.Slerp(top.transform.rotation, targetRotation, (Time.time - startTime)/openSpeed);
-            if (top.transform.rotation == targetRotation)
+            top.transform.localRotation = Quaternion.Slerp(sourceRotation, targetRotation, (Time.time - startTime)/openSpeed);
+            if (top.transform.localRotation.eulerAngles == targetRotation.eulerAngles)
             {
                 isOpen = !isOpen;
                 isMoving = false;
@@ -77,7 +90,8 @@ public class Chest : MonoBehaviour, IInteractable
             audioSource.PlayOneShot(openSFX[idx]);
             openDuration = openSFX[idx].length;
         }
-        targetRotation = Quaternion.Euler(openAngle, transform.localEulerAngles.y, transform.localEulerAngles.z);
+        sourceRotation = Quaternion.Euler(top.transform.localEulerAngles);
+        targetRotation = Quaternion.Euler(openAngle, 0, 0);
         gameObject.layer = LayerMask.NameToLayer("OpenChest");
     }
 
@@ -89,7 +103,8 @@ public class Chest : MonoBehaviour, IInteractable
             audioSource.PlayOneShot(closeSFX[idx]);
             closeDuration = closeSFX[idx].length;
         }
-        targetRotation = Quaternion.Euler(0, transform.localEulerAngles.y, transform.localEulerAngles.z);
+        sourceRotation = Quaternion.Euler(top.transform.localEulerAngles);
+        targetRotation = Quaternion.Euler(0, 0, 0);
         gameObject.layer = LayerMask.NameToLayer("Environment");
         //TODO ADD LOGIC TO EAT OR PUSH AWAY COLLIDING OBJECTS FIRST
     }
@@ -114,14 +129,12 @@ public class Chest : MonoBehaviour, IInteractable
         }
         obj.GetComponent<Pickuppable>().PutInChest(gameObject);
         inventory.Add(obj);
+        checklistManager.AddCoinDone();
         isFull = inventory.Count >= maxItems;
         if (isFull)
         {
             empty.SetActive(!isFull);
             full.SetActive(isFull);
-            if (TryGetComponent(out TaskInstance taskInstance)) {
-                taskInstance.Complete();
-            }
         }
     }
 }
